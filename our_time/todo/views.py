@@ -21,14 +21,14 @@ class TaskCreate(CreateView):
     model = Task
     template_name = 'todo/task_create.html'
     success_url = reverse_lazy('todos:task-list')
-    fields = ('__all__')
+    fields = '__all__'
 
 
 class TaskUpdate(UpdateView):
     model = Task
     template_name = 'todo/task_update.html'
     success_url = reverse_lazy('todos:task-list')
-    fields = ('__all__')
+    fields = '__all__'
 
 class TaskDelete(DeleteView):
     model = Task
