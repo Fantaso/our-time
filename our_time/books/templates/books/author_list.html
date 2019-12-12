@@ -11,14 +11,14 @@
     <h1>Author list</h1>
 
     <br>
-    <a href="{% url 'authors:author-create' %}">Create</a>
+    <a href="{% url 'books:author-create' %}">Create</a>
     <ul>
         {% for author in author_list %}
             <li>
                 {{ author.full_name }} - {{ author.birthdate|date }}
-                <a href="{% url 'authors:author-detail' pk=author.pk %}">View</a>
-                <a href="{% url 'authors:author-update' pk=author.pk %}">Update</a>
-                <a href="{% url 'authors:author-delete' pk=author.pk %}">Delete</a>
+                <a href="{% url 'books:author-detail' pk=author.pk %}">View</a>
+                <a href="{% url 'books:author-update' pk=author.pk %}">Update</a>
+                <a href="{% url 'books:author-delete' pk=author.pk %}">Delete</a>
             </li>
 
         {% empty %}

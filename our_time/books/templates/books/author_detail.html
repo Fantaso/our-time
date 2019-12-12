@@ -15,9 +15,9 @@
     <p>Created:     {{ author.birthdate|date }}</p>
 
     <br>
-    <a href="{% url 'authors:author-list' %}">Back</a>
-    <a href="{% url 'authors:author-delete' pk=author.pk %}">Delete?</a>
-    <a href="{% url 'authors:author-update' pk=author.pk %}">Update?</a>
+    <a href="{% url 'books:author-list' %}">Back</a>
+    <a href="{% url 'books:author-delete' pk=author.pk %}">Delete?</a>
+    <a href="{% url 'books:author-update' pk=author.pk %}">Update?</a>
     <br>
 
 </body>
