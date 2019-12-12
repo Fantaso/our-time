@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Task Detail</h1>
+
+    <h3>Title:      {{ task.title }}</h3>
+    <p>Description: {{ task.description }}</p>
+    <p>Created:     {{ task.created_at|date }}</p>
+    <p>Deadline:    {{ task.deadline|date }}</p>
+    <p>Priority:    {{ task.priority }}</p>
+    <p>Done?:       {{ task.is_done }}</p>
+
+    <p>Created:     {{ task.created_at|date }}</p>
+    <p>Updated:     {{ task.updated_at|date }}</p>
+
+    <br>
+    <a href="{% url 'todos:task-list' %}">Back</a>
+    <a href="{% url 'todos:task-delete' pk=task.pk %}">Delete?</a>
+    <a href="{% url 'todos:task-update' pk=task.pk %}">Update?</a>
+    <br>
+
+</body>
+</html>
