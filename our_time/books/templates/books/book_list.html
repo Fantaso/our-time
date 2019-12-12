@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Book list</h1>
+
+    <br>
+    <a href="{% url 'books:book-create' %}">Create</a>
+    <ul>
+        {% for book in book_list %}
+            <li>
+                {{ book.title }} - {{ book.author.full_name }} - {{ book.year }}
+                <a href="{% url 'books:book-detail' pk=book.pk %}">View</a>
+                <a href="{% url 'books:book-update' pk=book.pk %}">Update</a>
+                <a href="{% url 'books:book-delete' pk=book.pk %}">Delete</a>
+            </li>
+
+        {% empty %}
+            <li>No books yet.</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

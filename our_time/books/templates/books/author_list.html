@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Author list</h1>
+
+    <br>
+    <a href="{% url 'authors:author-create' %}">Create</a>
+    <ul>
+        {% for author in author_list %}
+            <li>
+                {{ author.full_name }} - {{ author.birthdate|date }}
+                <a href="{% url 'authors:author-detail' pk=author.pk %}">View</a>
+                <a href="{% url 'authors:author-update' pk=author.pk %}">Update</a>
+                <a href="{% url 'authors:author-delete' pk=author.pk %}">Delete</a>
+            </li>
+
+        {% empty %}
+            <li>No authors yet.</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

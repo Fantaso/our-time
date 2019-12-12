@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Book Detail</h1>
+
+    <h3>Title:      {{ book.title }}</h3>
+    <p>Description: {{ book.description }}</p>
+    <p>Publish Date:{{ book.year }}</p>
+    <p>Authors:    {{ book.authors }}</p>
+
+    <p>Bought:      {{ book.buy_date }}</p>
+    <p>Holder:      {{ book.holder }}</p>
+
+
+    <br>
+    <a href="{% url 'books:book-list' %}">Back</a>
+    <a href="{% url 'books:book-delete' pk=book.pk %}">Delete?</a>
+    <a href="{% url 'books:book-update' pk=book.pk %}">Update?</a>
+    <br>
+
+</body>
+</html>
