@@ -1,30 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'books/book_base.html' %}
 
-    <h1>Book list</h1>
+{% block list %}
+<h1 class="title is-1">Book Shelf</h1>
 
-    <br>
-    <a href="{% url 'books:book-create' %}">Create</a>
-    <ul>
-        {% for book in book_list %}
-            <li>
-                {{ book.title }} - {{ book.author.full_name }} - {{ book.year }}
-                <a href="{% url 'books:book-detail' pk=book.pk %}">View</a>
-                <a href="{% url 'books:book-update' pk=book.pk %}">Update</a>
-                <a href="{% url 'books:book-delete' pk=book.pk %}">Delete</a>
-            </li>
+<a href="{% url 'books:book-create' %}">
+    <button class="button is-small is-primary">
+        <span class="icon is-small">
+          <i class="fas fa-plus"></i>
+        </span>
+        <span>New book</span>
+    </button>
+</a>
+<br>
+<br>
 
-        {% empty %}
-            <li>No books yet.</li>
-        {% endfor %}
-    </ul>
 
-</body>
-</html>
+<div class="columns">
+    {% for book in book_list %}
+
+        <!-- TODO: this hack is horrible. figure how bulma responsive layout works   -->
+        {% if forloop.counter0|divisibleby:'4' %}
+            </div>
+            <div class="columns">
+        {% endif %}
+        <!-- TODOEND: -->
+
+        <div class="column">{% include 'books/include/card.html' %}</div>
+    {% empty %}
+        <h1>No books yet.</h1>
+    {% endfor %}
+
+</div>
+
+{% endblock list %}

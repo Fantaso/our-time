@@ -1,30 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'todo/todo_base.html' %}
 
-    <h1>Task list</h1>
+{% block list %}
+<h1 class="title is-1">Todo List</h1>
 
-    <br>
-    <a href="{% url 'todos:task-create' %}">Create</a>
-    <ul>
-        {% for task in task_list %}
-            <li>
-                {{ task.title }} - {{ task.created_at|date }}
-                <a href="{% url 'todos:task-detail' pk=task.pk %}">View</a>
-                <a href="{% url 'todos:task-update' pk=task.pk %}">Update</a>
-                <a href="{% url 'todos:task-delete' pk=task.pk %}">Delete</a>
-            </li>
+<a href="{% url 'todos:task-create' %}">
+    <button class="button is-small is-primary">
+        <span class="icon is-small">
+          <i class="fas fa-plus"></i>
+        </span>
+        <span>New task</span>
+    </button>
+</a>
+<br>
+<br>
 
-        {% empty %}
-            <li>No tasks yet.</li>
-        {% endfor %}
-    </ul>
+<table class="table">
+  <thead>
+    <tr>
 
-</body>
-</html>
+      <th><abbr title="Task ID">Id</abbr></th>
+      <td><abbr title="Title of tasks">Title</abbr></td>
+      <td><abbr title="Task deadline">Deadline</abbr></td>
+      <td><abbr title="1/2/3">Priority</abbr></td>
+      <td><abbr title="Is this task done?">Status</abbr></td>
+      <td><abbr title="View/Edit/Delete">Actions</abbr></td>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for task in task_list %}
+        <tr>
+            <th>{{ task.pk }}</th>
+            <td>{{ task.title }}</td>
+            <td>{{ task.created_at|date }}</td>
+            <td>{{ task.priority }}</td>
+            <td>{{ task.is_done }}</td>
+            <td>
+                <a href="{% url 'todos:task-detail' pk=task.pk %}"><span class="icon has-text-info"><i class="fa fa-eye" aria-hidden="true"></i></span></a>
+                <a href="{% url 'todos:task-update' pk=task.pk %}"><span class="icon has-text-dark"><i class="fas fa-pencil-alt"></i></span></a>
+                <a href="{% url 'todos:task-delete' pk=task.pk %}"><span class="icon has-text-danger"><i class="fa fa-trash" aria-hidden="true"></i></span></a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <th>No tasks yet.</th>
+            <td>No tasks yet.</td>
+            <td>No tasks yet.</td>
+            <td>No tasks yet.</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock list %}

@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'todo/todo_base.html' %}
+{% load widget_tweaks %}
 
-    <h1>Create Task</h1>
+{% block create %}
+<h1 class="title is-1">New task</h1>
 
-    <form method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Save">
-    </form>
-
-</body>
-</html>
+<form method="post">{% csrf_token %}
+<!--    {{ form.as_p }}-->
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }}
+            {{ field|attr:"class:input" }}
+        </div>
+    {% endfor %}
+<!--    <input type="submit" value="Save">-->
+    <button class="button is-small is-primary" value="submit"><span>Save</span></button>
+</form>
+{% endblock create %}

@@ -1,0 +1,13 @@
+Apps:
+- To-Do
+- Books - Virtual Bookshelf
+- Restaurants, Bares, Museum - Ausfluge DB
+- Movies, Docus
+- Travels
+
+
+
+NEXT
+-comments app with as reusable
+-pattern for crud extract for all models
+-QS for editable, viewable and deletable
