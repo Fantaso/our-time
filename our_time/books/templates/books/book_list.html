@@ -10,18 +10,9 @@
 <br>
 <br>
 
-
-<div class="columns">
+<div class="columns is-multiline">
     {% for book in book_list %}
-
-        <!-- TODO: this hack is horrible. figure how bulma responsive layout works   -->
-        {% if forloop.counter0|divisibleby:'4' %}
-            </div>
-            <div class="columns">
-        {% endif %}
-        <!-- TODOEND: -->
-
-        <div class="column">
+        <div class="column is-2-fullhd is-3-widescreen is-4-desktop is-6-tablet is-12-mobile">
             <a href="{% url 'books:book-detail' pk=book.pk %}">
                 {% card book.title book.year book.authors.first.full_name %}
             </a>
@@ -29,7 +20,6 @@
     {% empty %}
         <h1>No books yet.</h1>
     {% endfor %}
-
 </div>
 
 {% endblock list %}
