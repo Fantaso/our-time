@@ -1,7 +1,10 @@
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.views.generic.list import ListView
+from django.views.generic import (
+    CreateView, DeleteView, UpdateView, ListView, DetailView
+)
 
 # consider using reverse_lazy() here as class attrs are evaluated on file import
 # or on get_sucess_url() with reverse() as functions are not evaluated on import
@@ -14,11 +17,12 @@ class BookList(ListView):
     context_object_name = 'book_list'
 
 
-class BookCreate(CreateView):
+class BookCreate(SuccessMessageMixin, CreateView):
     model = Book
     template_name = 'books/book_create.html'
     success_url = reverse_lazy('books:book-list')
     fields = '__all__'
+    success_message = '%(title)s was created successfully'
 
 
 class BookDetail(DetailView):
@@ -32,12 +36,29 @@ class BookUpdate(UpdateView):
     success_url = reverse_lazy('books:book-list')
     fields = '__all__'
 
+    def form_valid(self, form):
+        """The for is already valid so add flash message and keep rolling the mro."""
+        # add sucessfull message
+        messages.success(self.request, f'Book update successfully: {self.object.title}.')
+        return super().form_valid(form)
+
 
 class BookDelete(DeleteView):
     model = Book
     template_name = 'books/book_delete.html'
-    success_url = reverse_lazy('books:list')
+    success_url = reverse_lazy('books:book-list')
     context_object_name = 'book'
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        success_url = self.get_success_url()
+
+        # add sucessfull message
+        messages.success(self.request, f'Book deleted successfully: {self.object.title}.')
+
+        self.object.delete()
+        return HttpResponseRedirect(success_url)
+
 
 ####################################3
 
@@ -71,4 +92,3 @@ class AuthorDelete(DeleteView):
     template_name = 'books/author_delete.html'
     success_url = reverse_lazy('books:list')
     context_object_name = 'author'
-
