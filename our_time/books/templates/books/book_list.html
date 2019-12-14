@@ -1,15 +1,11 @@
 {% extends 'books/book_base.html' %}
+{% load bulma_tags %}
 
 {% block list %}
 <h1 class="title is-1">Book Shelf</h1>
 
 <a href="{% url 'books:book-create' %}">
-    <button class="button is-small is-primary">
-        <span class="icon is-small">
-          <i class="fas fa-plus"></i>
-        </span>
-        <span>New book</span>
-    </button>
+    {% button "New book" "is-primary" "fas fa-plus" "is-small" %}
 </a>
 <br>
 <br>
@@ -25,7 +21,11 @@
         {% endif %}
         <!-- TODOEND: -->
 
-        <div class="column">{% include 'books/include/card.html' %}</div>
+        <div class="column">
+            <a href="{% url 'books:book-detail' pk=book.pk %}">
+                {% card book.title book.year book.authors.first.full_name %}
+            </a>
+        </div>
     {% empty %}
         <h1>No books yet.</h1>
     {% endfor %}

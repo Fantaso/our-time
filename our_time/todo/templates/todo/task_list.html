@@ -1,15 +1,11 @@
 {% extends 'todo/todo_base.html' %}
+{% load bulma_tags %}
 
 {% block list %}
 <h1 class="title is-1">Todo List</h1>
 
 <a href="{% url 'todos:task-create' %}">
-    <button class="button is-small is-primary">
-        <span class="icon is-small">
-          <i class="fas fa-plus"></i>
-        </span>
-        <span>New task</span>
-    </button>
+    {% button "New book" "is-primary" "fas fa-plus" "is-small" %}
 </a>
 <br>
 <br>
