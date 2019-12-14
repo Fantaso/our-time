@@ -12,24 +12,15 @@
   <body>
 
 <!-- NAV BAR-->
+  <div class="container">
   {% include 'main/include/nav.html' %}
+  </div>
 <!--END NAV BAR-->
 
 <!--  Flash Messages  -->
-  <section class="section">
-    {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-        <li{% if message.tags %} class="is-{{ message.tags }}"{% endif %}>
-          <div class="notification is-{{ message.tags }}">
-            <button class="delete"></button>
-            {{ message }}
-          </div>
-        </li>
-      {% endfor %}
-      </ul>
-    {% endif %}
-  </section>
+<div class="container">
+  {% include 'main/include/flash_message.html' with messages=messages %}
+</div>
 <!--  END Flash Messages  -->
 
   <section class="section">
