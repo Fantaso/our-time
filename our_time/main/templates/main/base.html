@@ -11,7 +11,26 @@
   </head>
   <body>
 
+<!-- NAV BAR-->
   {% include 'main/include/nav.html' %}
+<!--END NAV BAR-->
+
+<!--  Flash Messages  -->
+  <section class="section">
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="is-{{ message.tags }}"{% endif %}>
+          <div class="notification is-{{ message.tags }}">
+            <button class="delete"></button>
+            {{ message }}
+          </div>
+        </li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  </section>
+<!--  END Flash Messages  -->
 
   <section class="section">
     <div class="container">
@@ -27,5 +46,18 @@
 
     </div>
   </section>
+
+  {% block js_scripts %}
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+        $delete.addEventListener('click', (event) => {
+          event.target.parentNode.remove();
+        });
+      });
+    });
+  </script>
+  {% endblock js_scripts %}
+
   </body>
 </html>
