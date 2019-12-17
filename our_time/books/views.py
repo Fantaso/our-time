@@ -11,23 +11,36 @@ from django.views.generic import (
 from .models import Author, Book
 
 
+#######################
+###     BOOK        ###
+#######################
 class BookList(ListView):
     model = Book
     template_name = 'books/book_list.html'
     context_object_name = 'book_list'
 
 
-class BookCreate(SuccessMessageMixin, CreateView):
+class BookDetail(DetailView):
+    model = Book
+    template_name = 'books/book_detail.html'
+
+
+class BookCreate(CreateView):
     model = Book
     template_name = 'books/book_create.html'
     success_url = reverse_lazy('books:book-list')
     fields = '__all__'
     success_message = '%(title)s was created successfully'
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        success_message = self.get_success_message(form.cleaned_data)
+        if success_message:
+            messages.success(self.request, success_message)
+        return response
 
-class BookDetail(DetailView):
-    model = Book
-    template_name = 'books/book_detail.html'
+    def get_success_message(self, cleaned_data):
+        return self.success_message % cleaned_data
 
 
 class BookUpdate(UpdateView):
@@ -37,8 +50,7 @@ class BookUpdate(UpdateView):
     fields = '__all__'
 
     def form_valid(self, form):
-        """The for is already valid so add flash message and keep rolling the mro."""
-        # add sucessfull message
+        """The for is already valid so add flash message and keep rolling the MRO."""
         messages.success(self.request, f'Book update successfully: {self.object.title}.')
         return super().form_valid(form)
 
@@ -50,22 +62,23 @@ class BookDelete(DeleteView):
     context_object_name = 'book'
 
     def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        success_url = self.get_success_url()
-
-        # add sucessfull message
-        messages.success(self.request, f'Book deleted successfully: {self.object.title}.')
-
-        self.object.delete()
-        return HttpResponseRedirect(success_url)
+        """Deleting through the inherited delete method and adding a flash message and keep rolling MRO."""
+        messages.success(request, f'Author deleted successfully: {self.get_object().full_name}.')
+        return super().delete(request, *args, **kwargs)
 
 
-####################################3
-
+#######################
+###     AUTHOR      ###
+#######################
 class AuthorList(ListView):
     model = Author
     template_name = 'books/author_list.html'
     context_object_name = 'author_list'
+
+
+class AuthorDetail(DetailView):
+    model = Author
+    template_name = 'books/author_detail.html'
 
 
 class AuthorCreate(CreateView):
@@ -73,11 +86,17 @@ class AuthorCreate(CreateView):
     template_name = 'books/author_create.html'
     success_url = reverse_lazy('books:author-list')
     fields = '__all__'
+    success_message = '%(first_name)s was created successfully'
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        success_message = self.get_success_message(form.cleaned_data)
+        if success_message:
+            messages.success(self.request, success_message)
+        return response
 
-class AuthorDetail(DetailView):
-    model = Author
-    template_name = 'books/author_detail.html'
+    def get_success_message(self, cleaned_data):
+        return self.success_message % cleaned_data
 
 
 class AuthorUpdate(UpdateView):
@@ -86,9 +105,19 @@ class AuthorUpdate(UpdateView):
     success_url = reverse_lazy('books:author-list')
     fields = '__all__'
 
+    def form_valid(self, form):
+        """The for is already valid so add flash message and keep rolling the MRO."""
+        messages.success(self.request, f'Author update successfully: {self.object.full_name}.')
+        return super().form_valid(form)
+
 
 class AuthorDelete(DeleteView):
     model = Author
     template_name = 'books/author_delete.html'
-    success_url = reverse_lazy('books:list')
+    success_url = reverse_lazy('books:author-list')
     context_object_name = 'author'
+
+    def delete(self, request, *args, **kwargs):
+        """Deleting through the inherited delete method and adding a flash message and keep rolling MRO."""
+        messages.success(request, f'Author deleted successfully: {self.get_object().full_name}.')
+        return super().delete(request, *args, **kwargs)
