@@ -1,0 +1,146 @@
+{
+  "_args": [
+    [
+      "bulma-calendar",
+      "/home/fantaso/github/our-time-together/our_time/frontend/static/vendors"
+    ]
+  ],
+  "_from": "bulma-calendar@latest",
+  "_hasShrinkwrap": false,
+  "_id": "bulma-calendar@6.0.7",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/bulma-calendar",
+  "_nodeVersion": "10.15.3",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/bulma-calendar_6.0.7_1558178179576_0.24359864684789523"
+  },
+  "_npmUser": {
+    "email": "wikiki@protonmail.com",
+    "name": "wikiki"
+  },
+  "_npmVersion": "6.4.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "bulma-calendar",
+    "raw": "bulma-calendar",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/bulma-calendar/-/bulma-calendar-6.0.7.tgz",
+  "_shasum": "123b39c6f237745f1595254d5bb7c193feb0905b",
+  "_shrinkwrap": null,
+  "_spec": "bulma-calendar",
+  "_where": "/home/fantaso/github/our-time-together/our_time/frontend/static/vendors",
+  "author": {
+    "email": "wikiki@protonmail.com",
+    "name": "Wikiki",
+    "url": "https://creativebulma.net/author/wikiki"
+  },
+  "bugs": {
+    "url": "https://github.com/Wikiki/bulma-calendar/issues"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "bulma": "latest",
+    "date-and-time": "^0.6.3",
+    "date-fns": "^1.29.0"
+  },
+  "description": "Display a calendar for date/time selection, in different colors and sizes",
+  "devDependencies": {
+    "ansi-colors": "^2.0.1",
+    "autoprefixer": "^8.6.2",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.0.1",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.23.6",
+    "bulma": "^0.7.1",
+    "camelcase": "^5.0.0",
+    "cz-conventional-changelog": "^2.1.0",
+    "del": "^3.0.0",
+    "event-stream": "^3.3.4",
+    "fancy-log": "^1.3.2",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-nop": "0.0.3",
+    "gulp-postcss": "^7.0.1",
+    "gulp-run": "^1.7.1",
+    "gulp-sass": "^4.0.1",
+    "gulp-uglify": "^3.0.0",
+    "jekyll": "^3.0.0-beta1",
+    "jest": "^23.1.0",
+    "regenerator-runtime": "^0.11.1",
+    "semantic-release": "^15.9.14",
+    "webpack": "^4.12.0",
+    "webpack-stream": "^4.0.3"
+  },
+  "directories": {},
+  "dist": {
+    "fileCount": 57,
+    "integrity": "sha512-hSb8Y8myovv0e0SIPLVPZGtaGIzL/6SkZM3JiK9OaqjcCZFtYYjBaYCpLstn93J95+46sf8KU9LHIxU4o+b1kg==",
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJc3+mECRA9TVsSAnZWagAAq2MP/RsV+8s8ZE4HekLOmX97\n+QOre++XZy5ShhpmLQSofXcZE/J/BUyFx3s3M6Jjepc9/YjTEzsa3N00sWXh\n0MHMIYgxTienb7MqJ4ahgJfV+SohdW1v+osDUsDqX9CwYYNUkxoQ/Z9VvqeM\nz4G10oHG/96eIEqv8FKT/ECdFIQEgYruSvgwnjlx8JcwhWjAwYB8AK22vdJB\nSzommwZixKY8Qgdt+ehQ/5wnlCAeo28RbwiMGXaNLKwr2xvE3nnbJGJXvvSs\nlAVO4Qre+dV/1Fs5Xa2+KveqAD+6Q5WLc+pEdhuJZg/JvAS+kNZbz+sLRQwf\nWLHfLDH4QhxBHBGbN3pjFQAtLZQOIfowpJFuPc846wdOWmB09ahrWziLq5Iu\nOff8BgLvsZ2jMYo33HLxVncYtx14UBlHfQIpcUr45QwWEZQIH7G0GrqTdqsD\nB9wqyQr6Q/r1dgpN/FZGpkwYve1h21eUefV9qyHQwPFg6an/BPmoNT75NMu1\nFxXWiSbjv/+5YwXhff78+XWp4KTopF4JSZOf146YF+ED08mbYBTJ/fR8CmkS\nCkyoLseER2HGIXRogvxfcpoj/lCDvRk6NkxYx4ne9qSJWIFInCX19Fqr4C4D\nBkcaj+MHk9qMt+akwzYq3ABBz0l+iLVpmumKcDBu4T0tXj2U6HE35Y94rww1\nQAC7\r\n=E4jb\r\n-----END PGP SIGNATURE-----\r\n",
+    "shasum": "123b39c6f237745f1595254d5bb7c193feb0905b",
+    "tarball": "https://registry.npmjs.org/bulma-calendar/-/bulma-calendar-6.0.7.tgz",
+    "unpackedSize": 1772284
+  },
+  "gitHead": "74d311a979df3b7e0e58ab9ddecc3d62a015ac10",
+  "homepage": "https://creativebulma.net/components/calendar",
+  "keywords": [
+    "Bulma",
+    "bulma",
+    "bulma.io",
+    "calendar",
+    "date picker",
+    "datepicker",
+    "extension",
+    "extensions"
+  ],
+  "license": "MIT",
+  "main": "dist/js/bulma-calendar.js",
+  "maintainers": [
+    {
+      "name": "wikiki",
+      "email": "wikiki@protonmail.com"
+    }
+  ],
+  "name": "bulma-calendar",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "release": {
+    "prepare": [
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/changelog",
+        "changelogFile": "CHANGELOG.md"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wikiki/bulma-calendar.git"
+  },
+  "sass": "src/sass/index.sass",
+  "scripts": {
+    "build": "gulp build",
+    "clean": "gulp clean",
+    "commit": "git-cz",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
+  },
+  "style": "dist/css/bulma-calendar.min.css",
+  "version": "6.0.7"
+}
