@@ -1,37 +1,41 @@
 from django.urls import reverse_lazy
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.views.generic.list import ListView
+from django.views.generic import (
+    ListView, DetailView,
+    CreateView, DeleteView, UpdateView
+)
 
+from .forms import DateForm
 from .models import Task
 
+TODOS_TASK_LIST_NAMESPACE_URL = 'todos:task-list'
 
-class TaskList(ListView):
+
+class TaskBaseView:
     model = Task
+
+
+class TaskList(TaskBaseView, ListView):
     template_name = 'todo/task_list.html'
     context_object_name = 'task_list'
 
 
-class TaskDetail(DetailView):
-    model = Task
+class TaskDetail(TaskBaseView, DetailView):
     template_name = 'todo/task_detail.html'
 
 
-class TaskCreate(CreateView):
-    model = Task
+class TaskCreate(TaskBaseView, CreateView):
+    form_class = DateForm
     template_name = 'todo/task_create.html'
-    success_url = reverse_lazy('todos:task-list')
-    fields = '__all__'
+    success_url = reverse_lazy(TODOS_TASK_LIST_NAMESPACE_URL)
 
 
-class TaskUpdate(UpdateView):
-    model = Task
+class TaskUpdate(TaskBaseView, UpdateView):
     template_name = 'todo/task_update.html'
-    success_url = reverse_lazy('todos:task-list')
+    success_url = reverse_lazy(TODOS_TASK_LIST_NAMESPACE_URL)
     fields = '__all__'
 
-class TaskDelete(DeleteView):
-    model = Task
+
+class TaskDelete(TaskBaseView, DeleteView):
     template_name = 'todo/task_delete.html'
-    success_url = reverse_lazy('todos:task-list')
+    success_url = reverse_lazy(TODOS_TASK_LIST_NAMESPACE_URL)
     context_object_name = 'task'

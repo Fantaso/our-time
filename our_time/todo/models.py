@@ -9,10 +9,9 @@ class Task(models.Model):
 
     title = models.CharField(max_length=150, blank=False)
     description = models.CharField(max_length=500, null=True, blank=True)
-    deadline = models.DateTimeField(null=True, blank=True)
+    deadline = models.DateField(null=True, blank=True)
     priority = models.IntegerField(choices=PRIORITY_CHOICES)
     is_done = models.BooleanField(default=False)
-
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
