@@ -4,51 +4,56 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Our Time|Fantaso</title>
+    <title>{% block head_title %}Our Time | Fantaso{% endblock head_title %}</title>
+
+
+    <!--  BULMA WITH FONTAWESOME  -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-<!--    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">-->
+    <!--  END BULMA WITH FONTAWESOME  -->
+
   </head>
   <body>
 
-<!-- NAV BAR-->
+
+  <!-- NAV BAR  -->
   <div class="container">
-  {% include 'main/include/nav.html' %}
+    {% include 'main/include/nav.html' %}
   </div>
-<!--END NAV BAR-->
+  <!--END NAV BAR-->
 
-<!--  Flash Messages  -->
-<div class="container">
-  {% include 'main/include/flash_message.html' with messages=messages %}
-</div>
-<!--  END Flash Messages  -->
 
+  <!--  Flash Messages  -->
+  <div class="container">
+    {% include 'main/include/flash_message.html' with messages=messages %}
+  </div>
+  <!--  END Flash Messages  -->
+
+
+  <!-- ########################################################### -->
+  <!-- MAIN PAGE / BODY  -->
   <section class="section">
     <div class="container">
-
-
       {% block content %}
 
       <h1 class="title">Hola Vera & Carlos..</h1>
       <p class="subtitle">Este sera su nueva espacio <strong>privado</strong>!</p>
 
       {% endblock content %}
-
-
     </div>
   </section>
+  <!-- END MAIN PAGE / BODY  -->
+  <!-- ########################################################### -->
+
 
   {% block js_scripts %}
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-        $delete.addEventListener('click', (event) => {
-          event.target.parentNode.remove();
-        });
-      });
-    });
-  </script>
   {% endblock js_scripts %}
+
+
+  <!-- FLASH MESSAGE - Makes it possible to click the x and close the notification -->
+  <script src="{% static 'frontend/js/bulma_notification.js' %}"></script>
+  <!-- END FLASH MESSAGE -->
+
 
   </body>
 </html>
