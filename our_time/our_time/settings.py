@@ -22,7 +22,7 @@ INSTALLED_APPS = [
 
     'frontend',
     'main',
-    'todo',
+    'todos',
     'books',
     'widget_tweaks',
 ]
