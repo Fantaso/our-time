@@ -1,13 +1,55 @@
 Apps:
 - To-Do
 - Books - Virtual Bookshelf
-- Restaurants, Bares, Museum - Ausfluge DB
+
 - Movies, Docus
+
+- Restaurants, Bares, Museum - Ausfluge DB
 - Travels
 
 
+#######################################
+##############    NEXT   ##############
+#######################################
 
-NEXT
+### REFACTOR ###
+# TEMPLATES
+-organize includes and templates
+-style all html in all apps the same
+-try check how to DRY the create, update, delete (detail and list can be use as base with extended modifications)
+
+# STATIC FILES & MEDIA
+-move media file up a directory (the same as the development DB)
+
+# MODELS
+-move models into its own folder
+-add absoulte url to all models and str
+
+# VIEWS
+-see how to refactor CRUDL in books and author in Todo
+-create all mixins
+-maybe create the switchboard
+
+### TESTING ###
+# TESTS
+-add unit tests
+-add integration tests
+
+# TEST SYSTEM SETUP
+-add coverage
+-flake styling check
+-split requirements.txt (prod, dev, testing)
+
+### SETTINGS ###
+-split settings in its own folder
+
+### DEPLOYMENT
+-dockerfile dev
+-dockerfile test or CI
+-dockerfile for deployment
+
+
 -comments app with as reusable
--pattern for crud extract for all models
+-
 -QS for editable, viewable and deletable
+
