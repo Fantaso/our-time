@@ -16,9 +16,10 @@ def button(action, color, icon, size):
 
 
 @register.inclusion_tag('bulma/components/card.html')
-def card(title, year, person):
+def card(title, year, person, image=''):
     return {
         'title': title,
         'year': year,
         'person': person,
+        'image': image,
     }
