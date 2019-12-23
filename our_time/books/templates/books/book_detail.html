@@ -1,6 +1,6 @@
-{% extends 'books/book_base.html' %}
-
+{% extends 'books/base.html' %}
 {% load bulma_tags %}
+
 
 {% block detail %}
 {% if book.image %}
@@ -21,13 +21,6 @@
 <p> Publishers: {% for publisher in book.publishers.all %} {{ publisher.name }} {% endfor %}</p>
 <p> Genres: {% for genre in book.genres.all %} {{ genre.name }} {% endfor %}</p>
 <p> Languages: {% for language in book.languages.all %} {{ language.name }} {% endfor %}</p>
-
-
-
-
-
-
-
 
 <br>
 <a href="{% url 'books:book-list' %}">Back</a>
