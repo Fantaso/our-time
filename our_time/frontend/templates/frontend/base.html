@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block head_title %}Our Time | Fantaso{% endblock head_title %}</title>
+    <title>{% block head_title %}Our Time Together{% endblock head_title %}</title>
 
 
     <!--  BULMA WITH FONTAWESOME  -->
@@ -17,14 +17,14 @@
 
   <!-- NAV BAR  -->
   <div class="container">
-    {% include 'main/include/nav.html' %}
+    {% include 'frontend/include/nav.html' %}
   </div>
   <!--END NAV BAR-->
 
 
   <!--  Flash Messages  -->
   <div class="container">
-    {% include 'main/include/flash_message.html' with messages=messages %}
+    {% include 'frontend/include/flash_message.html' with messages=messages %}
   </div>
   <!--  END Flash Messages  -->
 
