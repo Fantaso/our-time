@@ -12,3 +12,4 @@ class AuthorAdmin(admin.ModelAdmin):
 class BookAdmin(admin.ModelAdmin):
     # list_display = ('__all__',)
     list_filter = ('title', 'publish_date')
+    # search_fields = ('first_name', 'last_name')

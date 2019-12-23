@@ -1,11 +1,44 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<div class="columns is-centered">
+    <div class="column is-4-desktop is-6-tablet is-12-mobile">
+        {% block create %}
+        {% endblock create %}
+  </div>
+</div>
 
-{% block create %}
-{% endblock create %}
+
+<div class="columns is-centered">
+    <div class="column is-6-tablet is-12-mobile">
+        {% block update %}
+        {% endblock update %}
+  </div>
+</div>
+
+<div class="columns is-centered">
+    <div class="column is-6-tablet is-12-mobile">
+        {% block detail %}
+        {% endblock detail %}
+  </div>
+</div>
 
 {% block list %}
 {% endblock list %}
+
+<div class="columns is-centered">
+    <div class="column is-6-tablet is-12-mobile">
+        {% block isbn %}
+        {% endblock isbn %}
+  </div>
+</div>
+
+<div class="columns is-centered">
+    <div class="column is-6-tablet is-12-mobile">
+        {% block delete %}
+        {% endblock delete %}
+  </div>
+</div>
+
 
 {% endblock content %}

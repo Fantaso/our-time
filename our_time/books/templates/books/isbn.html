@@ -1,0 +1,21 @@
+{% extends 'books/book_base.html' %}
+
+{% load widget_tweaks %}
+{% load bulma_tags %}
+
+{% block isbn %}
+<h1 class="title is-1">Find book</h1>
+
+<form method="post">{% csrf_token %}
+    {% for field in form %}
+        <div class="fieldWrapper field">
+            <label for="id_{{ field.name }}" class="label">{{ field.label|upper }}</label>
+            <div class="control">
+                {{ field }}
+            </div>
+            <p class="">{{ field.errors }}</p>
+        </div>
+    {% endfor %}
+    {% button "Find" "is-primary" "fas fa-book" "is-small" %}
+</form>
+{% endblock isbn %}

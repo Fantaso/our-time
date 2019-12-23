@@ -1,19 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'books/book_base.html' %}
 
-    <h1>Create Book</h1>
+{% load widget_tweaks %}
+{% load bulma_tags %}
 
-    <form method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Save">
+{% block create %}
+<h1 class="title is-1">New book</h1>
+
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {% for field in form %}
+        {# TODO: fix how to modify this better #}
+            {% if field == form.authors %}
+                <div class="fieldWrapper select is-multiple ">
+                    {{ field.errors }}
+                    {# field.label_tag #}
+                    <label for="id_{{ field.name }}" class="label">{{ field.label }}:</label>
+                    {{ field }}
+                </div>
+            {% elif field == form.image %}
+                <br>
+                <br>
+                <div class="fieldWrapper">
+                    {{ field.errors }}
+                    <div class="file">
+                        <label for="id_{{ field.name }}" class="file-label">
+                            {{ field }}
+                            <span class="file-cta">
+                              <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                              </span>
+                              <span class="file-label">
+                                Book cover…
+                              </span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <br>
+            {% else %}
+                <div class="fieldWrapper">
+                    {{ field.errors }}
+                    <label for="id_{{ field.name }}" class="label">{{ field.label }}:</label>
+                    {{ field }}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <br>
+        {% button "New book" "is-primary" "fas fa-plus" "is-small" %}
     </form>
+{% endblock create %}
 
-</body>
-</html>

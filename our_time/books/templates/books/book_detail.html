@@ -1,29 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'books/book_base.html' %}
 
-    <h1>Book Detail</h1>
+{% load widget_tweaks %}
+{% load bulma_tags %}
 
-    <h3>Title:      {{ book.title }}</h3>
-    <p>Description: {{ book.description }}</p>
-    <p>Publish Date:{{ book.year }}</p>
-    <p>Authors:    {{ book.authors }}</p>
+{% block detail %}
+{% if book.image %}
+    <img src="{{ book.image.url }}"  title="{{ book.title }}" alt="{{ book.title }}">
+{% endif %}
+<h1 class="title is-1">{{ book.title }}</h1>
+<p class="subtitle is-8">{{ book.description }}</p>
+<p>Year published: {{ book.year }}</p>
 
-    <p>Bought:      {{ book.buy_date }}</p>
-    <p>Holder:      {{ book.holder }}</p>
+<p> Authors: {% for author in book.authors.all %} {{ author.full_name }} {% endfor %}</p>
+<p>ISBN 10: <strong>{{ book.isbn_10 }}</strong></p>
+<p>ISBN 13: <strong>{{ book.isbn_13 }}</strong></p>
+<p>Pages Qty: <strong>{{ book.pages_num }}</strong></p>
+
+<p>Buy date: <strong>{{ book.buy_date }}</strong></p>
+<p>Holder: <strong>{{ book.holder }}</strong></p>
+
+<p> Publishers: {% for publisher in book.publishers.all %} {{ publisher.name }} {% endfor %}</p>
+<p> Genres: {% for genre in book.genres.all %} {{ genre.name }} {% endfor %}</p>
+<p> Languages: {% for language in book.languages.all %} {{ language.name }} {% endfor %}</p>
 
 
-    <br>
-    <a href="{% url 'books:book-list' %}">Back</a>
-    <a href="{% url 'books:book-delete' pk=book.pk %}">Delete?</a>
-    <a href="{% url 'books:book-update' pk=book.pk %}">Update?</a>
-    <br>
 
-</body>
-</html>
+
+
+
+
+
+<br>
+<a href="{% url 'books:book-list' %}">Back</a>
+<a href="{% url 'books:book-delete' pk=book.pk %}">Delete?</a>
+<a href="{% url 'books:book-update' pk=book.pk %}">Update?</a>
+<br>
+{% endblock detail %}

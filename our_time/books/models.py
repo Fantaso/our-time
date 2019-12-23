@@ -25,24 +25,52 @@ class Author(models.Model):
         verbose_name_plural = 'authors'
 
 
-class Book(models.Model):
-    title = models.CharField(max_length=300)
-    # image = models.ImageField()
-    description = models.TextField()
-    publish_date = models.DateField(blank=True, null=False)
-    authors = models.ManyToManyField('Author', related_name='books')
+class Publisher(models.Model):
+    name = models.CharField(max_length=120, blank=True)
 
-    buy_date = models.DateField(blank=True, null=False)
-    holder = models.CharField(max_length=100, blank=False, null=False)
+
+class Genre(models.Model):
+    name = models.CharField(max_length=15, blank=True)
+
+
+class Language(models.Model):
+    name = models.CharField(max_length=100, blank=True)
+
+
+class Book(models.Model):
+    isbn_10 = models.CharField(max_length=30, blank=True)
+    isbn_13 = models.CharField(max_length=30, blank=True)
+    title = models.CharField(max_length=300)
+    description = models.TextField(blank=True)
+    publish_date = models.DateField(blank=True, null=True)
+    authors = models.ManyToManyField('Author', related_name='books', blank=True)
+    image = models.ImageField(
+        blank=True, null=True,
+        upload_to='books_cover/',
+        db_index=True,
+    )
+    pages_num = models.IntegerField(blank=True, null=True)
+    publishers = models.ManyToManyField('Publisher', related_name='books', blank=True)
+    genres = models.ManyToManyField('Genre', related_name='books', blank=True)
+    languages = models.ManyToManyField('Language', related_name='books', blank=True)
+
+    buy_date = models.DateField(blank=True, null=True)
+    holder = models.CharField(max_length=100, blank=True)
 
     @cached_property
     def year(self):
-        return self.publish_date.strftime('%Y')
+        if self.publish_date:
+            return self.publish_date.strftime('%Y')
+        return ''
 
     def __str__(self):
         return f'<book: {self.title} - {self.year}>'
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('books:book-detail', args=[int(self.id)])
+
     class Meta:
-        ordering = ('-title',)
+        ordering = ('-pk',)
         verbose_name = 'book'
         verbose_name_plural = 'books'
