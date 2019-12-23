@@ -3,14 +3,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from main.views import DashboardView
-
 urlpatterns = [
-    path('', DashboardView.as_view(), name='main'),
-    path('admin/', admin.site.urls),
+
+    path('', include('main.urls')),
+
     path('todos/', include('todos.urls')),
     path('shelf/', include('books.urls')),
+
+    path('admin/', admin.site.urls),
 ]
+
 ########################################
 ###    STATIC & MEDIA FILES - DEV    ###
 ########################################
