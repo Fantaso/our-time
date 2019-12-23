@@ -1,19 +1,17 @@
-{% extends 'todo/todo_base.html' %}
+{% extends 'todos/todo_base.html' %}
 {% load widget_tweaks %}
 
 {% block create %}
 <h1 class="title is-1">New task</h1>
 
 <form method="post">{% csrf_token %}
-<!--    {{ form.as_p }}-->
     {% for field in form %}
-        <div class="fieldWrapper">
-            {{ field.errors }}
-            {{ field.label_tag }}
-            {{ field|attr:"class:input" }}
-        </div>
+    <div class="fieldWrapper field">
+        {{ field.errors }}
+        {{ field.label_tag }}
+        {{ field }}
+    </div>
     {% endfor %}
-<!--    <input type="submit" value="Save">-->
     <button class="button is-small is-primary" value="submit"><span>Save</span></button>
 </form>
 {% endblock create %}

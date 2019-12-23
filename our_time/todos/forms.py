@@ -5,14 +5,16 @@ from .models import Task
 
 
 class DateForm(forms.ModelForm):
-    deadline = forms.DateField(widget=forms.DateInput(
-        attrs={
-            'type': 'date',
-            'value': timezone.now().strftime('%Y-%m-%d'),
-        }
-    ))
-
     class Meta:
         model = Task
         fields = '__all__'
-        exclude = ('deadline',)  # if included, first it needs to retrieve correct format
+        widgets = {
+            'is_done': forms.CheckboxInput(attrs={'class': 'checkbox', 'type': 'checkbox'}),
+            'title': forms.TextInput(attrs={'class': 'input'}),
+            'description': forms.Textarea(attrs={'rows': '10', 'class': 'textarea'}),
+            'priority': forms.Select(attrs={'class': 'select'}),
+            'deadline': forms.DateInput(
+                attrs={'class': 'input', 'type': 'date', 'value': timezone.now().strftime('%Y-%m-%d')},
+                format='%Y-%m-%d')
+            ,
+        }
