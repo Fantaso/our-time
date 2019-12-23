@@ -22,7 +22,6 @@ INSTALLED_APPS = [
     'main',
     'todos',
     'books',
-    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
