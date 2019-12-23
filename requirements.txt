@@ -1,1 +1,6 @@
 Django==2.2
+requests==2.22
+Pillow=6.2.1
+
+# NOT NEEDED ANYMORE
+# django-widget-tweaks==1.4.5  # allows to pass tag attr into the form html field in templates
