@@ -24,18 +24,18 @@ from .services import get_book_data
 
 class BookList(ListView):
     model = Book
-    template_name = 'books/book_list.html'
+    template_name = 'bookshelf/books/list.html'
     context_object_name = 'book_list'
 
 
 class BookDetail(DetailView):
     model = Book
-    template_name = 'books/book_detail.html'
+    template_name = 'bookshelf/books/detail.html'
 
 
 class BookCreate(CreateView):
     model = Book
-    template_name = 'books/book_create.html'
+    template_name = 'bookshelf/books/book_create.html'
     success_url = reverse_lazy('books:book-list')
     form_class = BookForm
     success_message = '%(title)s was created successfully'
@@ -79,7 +79,7 @@ class BookCreate(CreateView):
 
 class BookUpdate(UpdateView):
     model = Book
-    template_name = 'books/book_update.html'
+    template_name = 'bookshelf/books/book_update.html'
     # if successurlno specified. takes you to detail view
     # success_url = reverse_lazy('books:book-list')
     form_class = BookForm
@@ -125,7 +125,7 @@ class BookUpdate(UpdateView):
 
 class BookDelete(DeleteView):
     model = Book
-    template_name = 'books/book_delete.html'
+    template_name = 'bookshelf/books/book_delete.html'
     success_url = reverse_lazy('books:book-list')
     context_object_name = 'book'
 
@@ -136,7 +136,7 @@ class BookDelete(DeleteView):
 
 
 class FetchBookData(FormView):
-    template_name = 'books/isbn.html'
+    template_name = 'bookshelf/books/isbn.html'
     form_class = ISBNForm
     success_url = 'books:book-list'
 
@@ -225,6 +225,7 @@ class FetchBookData(FormView):
 
         messages.add_message(self.request, messages.ERROR, f"ISBN:{isbn} - {str(form.cleaned_data)}")
         return HttpResponseRedirect(reverse('books:isbn'))
+#     ConnectionError when no internet is available at own PC
 
 
 #######################
@@ -232,18 +233,18 @@ class FetchBookData(FormView):
 #######################
 class AuthorList(ListView):
     model = Author
-    template_name = 'books/author_list.html'
+    template_name = 'bookshelf/books/author_list.html'
     context_object_name = 'author_list'
 
 
 class AuthorDetail(DetailView):
     model = Author
-    template_name = 'books/author_detail.html'
+    template_name = 'bookshelf/books/author_detail.html'
 
 
 class AuthorCreate(CreateView):
     model = Author
-    template_name = 'books/author_create.html'
+    template_name = 'bookshelf/books/author_create.html'
     success_url = reverse_lazy('books:author-list')
     fields = '__all__'
     success_message = '%(first_name)s was created successfully'
@@ -261,7 +262,7 @@ class AuthorCreate(CreateView):
 
 class AuthorUpdate(UpdateView):
     model = Author
-    template_name = 'books/author_update.html'
+    template_name = 'bookshelf/books/author_update.html'
     success_url = reverse_lazy('books:author-list')
     fields = '__all__'
 
@@ -273,7 +274,7 @@ class AuthorUpdate(UpdateView):
 
 class AuthorDelete(DeleteView):
     model = Author
-    template_name = 'books/author_delete.html'
+    template_name = 'bookshelf/books/author_delete.html'
     success_url = reverse_lazy('books:author-list')
     context_object_name = 'author'
 
