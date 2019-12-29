@@ -2,7 +2,7 @@
 {% load bulma_tags %}
 
 
-{% block body %}
+{% block library %}
 <h1 class="title is-1">New book</h1>
 
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
@@ -47,5 +47,5 @@
         <br>
         {% button "New book" "is-primary" "fas fa-plus" "is-small" %}
     </form>
-{% endblock body %}
+{% endblock library %}
 

@@ -2,7 +2,7 @@
 {% load bulma_tags %}
 
 
-{% block delete %}
+{% block library %}
 <h1 class="title is-1">Delete Book</h1>
 
 <form method="post">{% csrf_token %}
@@ -11,7 +11,7 @@
     <br>
     {% button "Delete" "is-danger" "fas fa-times" "is-small" %}
 </form>
-{% endblock delete %}
+{% endblock library %}
 
 
 
