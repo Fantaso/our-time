@@ -18,6 +18,10 @@ class Task(models.Model):
     def __str__(self):
         return f'<task: {self.title}>'
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('todos:task-detail', args=[int(self.id)])
+
     class Meta:
         ordering = ('-priority',)
         verbose_name = 'task'
