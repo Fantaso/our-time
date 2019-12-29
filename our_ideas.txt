@@ -17,6 +17,7 @@ Apps:
 -organize includes and templates
 -style all html in all apps the same
 -try check how to DRY the create, update, delete (detail and list can be use as base with extended modifications)
+OK-erase widget_tweaks app and from templates.
 
 # STATIC FILES & MEDIA
 -move media file up a directory (the same as the development DB)
@@ -40,6 +41,9 @@ Apps:
 -flake styling check
 -split requirements.txt (prod, dev, testing)
 
+### APP ###
+-books app rename to bookshelf (books, authors, languages, genres, publishers)
+
 ### SETTINGS ###
 -split settings in its own folder
 
@@ -49,7 +53,9 @@ Apps:
 -dockerfile for deployment
 
 
--comments app with as reusable
--
+### EXTRAS
+-COMMEMTS app with as reusable
+-Add internationalization LOCALE
+
 -QS for editable, viewable and deletable
 
