@@ -1,8 +1,12 @@
-{% extends 'books/base.html' %}
+{% extends 'frontend/base.html' %}
 {% load bulma_tags %}
 
 
-{% block isbn %}
+{% block head_title %}
+ISBN Book
+{% endblock head_title %}
+
+{% block body %}
 <h1 class="title is-1">Find book</h1>
 
 <form method="post">{% csrf_token %}
@@ -17,4 +21,4 @@
     {% endfor %}
     {% button "Find" "is-primary" "fas fa-book" "is-small" %}
 </form>
-{% endblock isbn %}
+{% endblock body %}

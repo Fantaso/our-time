@@ -1,10 +1,10 @@
-{% extends 'books/base.html' %}
+{% extends 'library/base.html' %}
 {% load bulma_tags %}
 
 {% block list %}
 <h1 class="title is-1">Writers & Authors</h1>
 
-<a href="{% url 'books:author-create' %}">
+<a href="{% url 'library:author-create' %}">
     {% button "New author" "is-primary" "fas fa-plus" "is-small" %}
 </a>
 <br>
@@ -13,7 +13,7 @@
 <div class="columns is-multiline">
     {% for author in author_list %}
         <div class="column is-2-fullhd is-3-widescreen is-4-desktop is-6-tablet is-12-mobile">
-            <a href="{% url 'books:author-detail' pk=author.pk %}">
+            <a href="{% url 'library:author-detail' pk=author.pk %}">
                 {% card author.full_name author.birthdate author.books.all %}
             </a>
         </div>

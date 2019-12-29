@@ -21,7 +21,7 @@ INSTALLED_APPS = [
     'frontend',
     'main',
     'todos',
-    'books',
+    'library',
 ]
 
 MIDDLEWARE = [

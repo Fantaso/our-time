@@ -1,8 +1,9 @@
-{% extends 'books/base.html' %}
+{% extends 'library/base.html' %}
 {% load bulma_tags %}
 
-{% block create %}
-<h1 class="title is-1">New book</h1>
+
+{% block update %}
+<h1 class="title is-1">Update book</h1>
 
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
         {% for field in form %}
@@ -44,7 +45,7 @@
         {% endfor %}
 
         <br>
-        {% button "New book" "is-primary" "fas fa-plus" "is-small" %}
+        {% button "Update book" "is-primary" "fas fa-pen" "is-small" %}
     </form>
-{% endblock create %}
+{% endblock update %}
 

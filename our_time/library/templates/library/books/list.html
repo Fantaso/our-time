@@ -11,14 +11,14 @@ Book Shelf
 {% endblock list_title %}
 
 {% block buttons %}
-<a href="{% url 'books:book-create' %}">{% button "New book" "is-primary" "fas fa-plus" "is-small" %}</a>
-<a href="{% url 'books:isbn' %}">{% button "New ISBN book" "is-primary" "fas fa-plus" "is-small" %}</a>
+<a href="{% url 'library:book-create' %}">{% button "New book" "is-primary" "fas fa-plus" "is-small" %}</a>
+<a href="{% url 'library:book-isbn' %}">{% button "New ISBN book" "is-primary" "fas fa-plus" "is-small" %}</a>
 {% endblock buttons %}
 
 {% block card_list %}
     {% for book in book_list %}
         <div class="column is-2-fullhd is-3-widescreen is-4-desktop is-6-tablet is-12-mobile">
-            <a href="{% url 'books:book-detail' pk=book.pk %}">
+            <a href="{% url 'library:book-detail' pk=book.pk %}">
                 {% card book.title book.year book.authors.first.full_name book.image %}
             </a>
         </div>

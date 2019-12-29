@@ -1,8 +1,9 @@
-{% extends 'main/base.html' %}
+{% extends 'frontend/base.html' %}
 
-{% block none %}
+{% block delete %}
 <form method="post">{% csrf_token %}
     <p>Are you sure you want to delete "{{ task.title }}"?</p>
+
     <input type="submit" value="Confirm">
 </form>
-{% endblock none %}
+{% endblock delete %}

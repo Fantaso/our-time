@@ -2,6 +2,7 @@ import requests
 
 
 def get_book_data(isbn):
+    # TODO: ConnectionError - Exception when no internet or failed connection.
     books_url = 'http://openlibrary.org/api/books'
     params = {
         'bibkeys': f'ISBN:{isbn}',

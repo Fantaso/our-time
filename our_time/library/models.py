@@ -68,7 +68,7 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('books:book-detail', args=[int(self.id)])
+        return reverse('library:book-detail', args=[int(self.id)])
 
     class Meta:
         ordering = ('-pk',)
