@@ -11,8 +11,8 @@ Book Detail
 
     <div class="card-image">
         <figure class="image is-4by3">
-            {% if book.image %}
-                <img src="{{ book.image.url }}"  title="{{ book.title }}" alt="{{ book.title }}">
+            {% if book.cover %}
+                <img src="{{ book.cover.url }}"  title="{{ book.title }}" alt="{{ book.title }}">
             {% endif %}
         </figure>
     </div>
@@ -35,14 +35,15 @@ Book Detail
 <!--            <a>@bulmaio</a>.-->
 <!--            <a href="#">#css</a>-->
             <br>
-            <time datetime="2016-1-1">1999{{ book.year }}</time>
+            <time datetime="2016-1-1"><strong>{{ book.year }}</strong></time>
 
+            <br>
+            <br>
             <p>ISBN 10: <strong>{{ book.isbn_10 }}</strong></p>
-            <p>ISBN 13: <strong>{{ book.isbn_13 }}</strong></p>
-            <p>Pages Qty: <strong>{{ book.pages_num }}</strong></p>
-
-            <p>Buy date: <strong>{{ book.buy_date }}</strong></p>
-            <p>Holder: <strong>{{ book.holder }}</strong></p>
+            {# <p>ISBN 13: <strong>{{ book.isbn_13 }}</strong></p>} #}
+            <p>Pages Qty: <strong>{{ book.number_of_pages }}</strong></p>
+            {# <p>Buy date: <strong>{{ book.buy_date }}</strong></p>} #}
+            {# <p>Holder: <strong>{{ book.holder }}</strong></p>} #}
 
             <p> Publishers: {% for publisher in book.publishers.all %} {{ publisher.name }} {% endfor %}</p>
             <p> Genres: {% for genre in book.genres.all %} {{ genre.name }} {% endfor %}</p>

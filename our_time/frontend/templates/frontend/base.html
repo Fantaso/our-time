@@ -16,9 +16,9 @@
 
 
   <!-- NAV BAR  -->
-  <div class="container">
+<!--  <div class="container">-->
     {% include 'frontend/include/nav.html' %}
-  </div>
+<!--  </div>-->
   <!--END NAV BAR-->
 
 
@@ -35,8 +35,8 @@
     <div class="container">
       {% block body %}
 
-      <h1 class="title">Hola Vera & Carlos..</h1>
-      <p class="subtitle">Este sera su nueva espacio <strong>privado</strong>!</p>
+      <h4 class="title is-4">Hola Vera & Carlos..</h4>
+      <p class="subtitle is-6">Este sera su nueva espacio <strong>privado</strong>!</p>
 
       {% endblock body %}
     </div>
@@ -51,6 +51,7 @@
 
   <!-- FLASH MESSAGE - Makes it possible to click the x and close the notification -->
   <script src="{% static 'frontend/js/bulma_notification.js' %}"></script>
+  <script src="{% static 'frontend/js/bulma_navbar_toggle.js' %}"></script>
   <!-- END FLASH MESSAGE -->
 
 
