@@ -1,20 +1,20 @@
 <div class="card">
     <div class="card-image">
-      <figure class="image is-1by1">
-          {% if image %}
+        <figure class="image is-1by1">
+            {% if image %}
             <img src="{{ image.url }}" title="{{ title }}" alt="{{ title }}">
-          {% else %}
+            {% else %}
             <img src="{{ image }}" title="{{ title }}" alt="{{ title }}">
-          {% endif %}
-      </figure>
+            {% endif %}
+        </figure>
     </div>
     <div class="card-content">
-      <div class="media">
-        <div class="media-content">
-            <p class="title is-4 has-text-grey-dark">{{ title }}
-                <br><span class="title is-6 has-text-primary">{{ year }}</span></p>
-          <p class="subtitle is-6">{{ person }}</p>
+        <div class="media">
+            <div class="media-content">
+                <p class="title is-4 has-text-grey-dark">{{ title }}
+                    <br><span class="title is-6 has-text-primary">{{ year }}</span></p>
+                <p class="subtitle is-6">{{ person }}</p>
+            </div>
         </div>
-      </div>
     </div>
 </div>
