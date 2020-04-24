@@ -5,7 +5,10 @@ from django.urls import path, include
 
 urlpatterns = [
 
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', include('main.urls')),
+
+    # path('accounts', include('accounts.urls')),
 
     path('todos/', include('todos.urls')),
     path('bookshelf/', include('library.urls')),

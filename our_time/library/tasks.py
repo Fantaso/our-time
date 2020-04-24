@@ -17,7 +17,7 @@ def book_exists(isbn):
     return False
 
 
-def delayed_find_book_and_save(isbn: str = None):
+def delayed_find_book_and_save(user, isbn: str = None):
     from .openlibrary.managers import OpenLibraryManager, ImageManager
 
     if not isbn:
@@ -31,6 +31,7 @@ def delayed_find_book_and_save(isbn: str = None):
 
     # get formatted book data and create the form with ir
     book_data = manager.parse_book_by_isbn10(json_data)
+
     authors = book_data.pop('authors')
     publishers = book_data.pop('publishers')
 
@@ -46,6 +47,7 @@ def delayed_find_book_and_save(isbn: str = None):
     # book form validation
     if book_form.is_valid():
         book = book_form.save()
+        book.owner = user
 
         # check relationships
         if authors:

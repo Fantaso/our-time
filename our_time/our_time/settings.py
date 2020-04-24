@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 'accounts',
     'frontend',
     'main',
     'todos',
@@ -110,3 +111,7 @@ FILE_UPLOAD_PERMISSIONS = None  # default is None or it can be 0o644 for file pe
 # TODO: in Django says 'MEDIA_URL' must not contain the tailing slash 'media/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# user
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/bookshelf/books/'

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.functional import cached_property
 
@@ -56,6 +57,7 @@ class Language(models.Model):
 
 class Book(models.Model):
     # book details
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     isbn_10 = models.CharField(max_length=30, blank=True)
 
     title = models.CharField(max_length=300)

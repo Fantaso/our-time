@@ -1,6 +1,7 @@
 from pprint import pprint
 
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import (
@@ -23,9 +24,18 @@ class BookBase:
     model = Book
 
 
-class BookList(BookBase, ListView):
+class BookList(LoginRequiredMixin, BookBase, ListView):
     template_name = 'library/books/list.html'
     context_object_name = 'book_list'
+
+    def dispatch(self, request, *args, **kwargs):
+        print(request.user)
+        if not request.user.is_authenticated:
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return Book.objects.filter(owner=self.request.user).all()
 
 
 class BookDetail(BookBase, DetailView):
@@ -90,7 +100,7 @@ class FetchBookData(FormView):
             return super().form_invalid(form)
 
         messages.success(self.request, f"Book isbn:{isbn} will be added to your list.")
-        delayed_find_book_and_save(isbn)
+        delayed_find_book_and_save(self.request.user, isbn)
         return super().form_valid(form)
 
 
