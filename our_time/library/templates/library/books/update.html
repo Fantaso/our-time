@@ -16,13 +16,24 @@
                     {{ field }}
                 </div>
                 <br>
+            {% elif field == form.owner %}
+                <div class="control">
+                    <label for="id_{{ field.name }}" class="label">{{ field.label }}:</label>
+                    <div class="fieldWrapper select">
+                        {{ field.errors }}
+                        {# field.label_tag #}
+                        {{ field }}
+                    </div>
+                </div>
+                <br>
             {% elif field == form.cover %}
                 <br>
                 <br>
                 <div class="fieldWrapper">
+                    <label for="id_{{ field.name }}" class="file-label">
                     {{ field.errors }}
                     <div class="file">
-                        <label for="id_{{ field.name }}" class="file-label">
+
                             {{ field }}
                             <span class="file-cta">
                               <span class="file-icon">

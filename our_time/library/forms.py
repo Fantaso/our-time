@@ -23,8 +23,10 @@ class BookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = '__all__'
+        exclude = ()
         widgets = {
             # TOOD: this definetly needs a refactor
+            # 'owner': forms.Select(attrs={'class': 'select'}),
             'isbn_10': forms.TextInput(attrs={'class': 'input'}),
             # 'isbn_13': forms.TextInput(attrs={'class': 'input'}),
             'title': forms.TextInput(attrs={'class': 'input'}),

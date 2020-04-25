@@ -8,13 +8,24 @@
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
         {% for field in form %}
         {# TODO: fix how to modify this better #}
-            {% if field == form.authors %}
+            {% if field == form.authors or field == form.publishers or field == form.genres or field == form.languages %}
                 <div class="fieldWrapper select is-multiple ">
                     {{ field.errors }}
                     {# field.label_tag #}
                     <label for="id_{{ field.name }}" class="label">{{ field.label }}:</label>
                     {{ field }}
                 </div>
+                <br>
+            {% elif field == form.owner %}
+                <div class="control">
+                    <label for="id_{{ field.name }}" class="label">{{ field.label }}:</label>
+                    <div class="fieldWrapper select">
+                        {{ field.errors }}
+                        {# field.label_tag #}
+                        {{ field }}
+                    </div>
+                </div>
+                <br>
             {% elif field == form.cover %}
                 <br>
                 <br>

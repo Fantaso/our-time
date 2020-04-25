@@ -20,12 +20,12 @@ Book Detail
     <div class="card-content">
         <div class="media">
             <div class="media-content">
-                <p class="title is-4">{{ book.title }}</p>
-                <p class="subtitle is-6">{{ book.subtitle }}<p class="subtitle is-6">
+                <p class="title is-4">{{ book.title|title }}</p>
+                <p class="subtitle is-6">{{ book.subtitle|title }}<p class="subtitle is-6">
 
                     <!-- Authors -->
                     <strong>Written by </strong>
-                    {% for author in book.authors.all %} {{ author.name }}, {% endfor %}
+                    {% for author in book.authors.all %} {{ author.name|title }}, {% endfor %}
 
                     <!-- Year of publication -->
                     <br>
@@ -52,9 +52,9 @@ Book Detail
             {# <p><strong>Buy date</strong>: {{ book.buy_date }}</p>} #}
             {# <p><strong>Holder</strong>: {{ book.holder }}</p>} #}
 
-            <p> <strong>Publishers:</strong> {% for publisher in book.publishers.all %} {{ publisher.name }}, {% endfor %}</p>
-            <p> <strong>Genres:</strong> {% for genre in book.genres.all %} {{ genre.name }}, {% endfor %}</p>
-            {# <p> <strong>Languages:</strong> {% for language in book.languages.all %} {{ language.name }} {% endfor %}</p> #}
+            <p> <strong>Publishers:</strong> {% for publisher in book.publishers.all %} {{ publisher.name|title }}, {% endfor %}</p>
+            <p> <strong>Genres:</strong> {% for genre in book.genres.all %} {{ genre.name|title }}, {% endfor %}</p>
+            {# <p> <strong>Languages:</strong> {% for language in book.languages.all %} {{ language.name|title }} {% endfor %}</p> #}
 
         </div>
 
