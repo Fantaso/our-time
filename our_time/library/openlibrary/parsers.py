@@ -17,7 +17,7 @@ class OpenLibraryParser:
              'small': 'https://covers.openlibrary.org/b/id/8569281-S.jpg'}
     # download available files in ebooks
     ebooks = [
-        {'availability': 'full',
+        {'availability': 'full',  # 'restricted'
          'formats': {'epub': {'url': 'https://archive.org/download/CleanCode_201607/CleanCode_201607.epub'},
                      'pdf': {'url': 'https://archive.org/download/CleanCode_201607/CleanCode_201607.pdf'},
                      'text': {'url': 'https://archive.org/download/CleanCode_201607/CleanCode_201607_djvu.txt'}},
