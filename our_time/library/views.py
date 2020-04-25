@@ -29,7 +29,6 @@ class BookList(LoginRequiredMixin, BookBase, ListView):
     context_object_name = 'book_list'
 
     def dispatch(self, request, *args, **kwargs):
-        print(request.user)
         if not request.user.is_authenticated:
             return self.handle_no_permission()
         return super().dispatch(request, *args, **kwargs)

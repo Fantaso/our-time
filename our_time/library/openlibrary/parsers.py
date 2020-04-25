@@ -66,7 +66,7 @@ class OpenLibraryParser:
             # table_of_contents=self.parse_table_of_contents(),
             authors=self.parse_authors(),
             publishers=self.parse_publishers(),
-            # genres=self.parse_genres(),
+            genres=self.parse_genres(),
             # languages=self.parse_languages(),
             cover=self.parse_cover(),
         )
@@ -107,7 +107,7 @@ class OpenLibraryParser:
         return [publisher['name'] for publisher in publishers]
 
     def parse_genres(self):
-        genres = self.book_data.get('genres', [])
+        genres = self.book_data.get('subjects', [])
         return [genre['name'] for genre in genres]
 
     def parse_languages(self):

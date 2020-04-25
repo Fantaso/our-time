@@ -53,7 +53,7 @@ Book Detail
             {# <p><strong>Holder</strong>: {{ book.holder }}</p>} #}
 
             <p> <strong>Publishers:</strong> {% for publisher in book.publishers.all %} {{ publisher.name }}, {% endfor %}</p>
-            {# <p> <strong>Genres:</strong> {% for genre in book.genres.all %} {{ genre.name }} {% endfor %}</p> #}
+            <p> <strong>Genres:</strong> {% for genre in book.genres.all %} {{ genre.name }}, {% endfor %}</p>
             {# <p> <strong>Languages:</strong> {% for language in book.languages.all %} {{ language.name }} {% endfor %}</p> #}
 
         </div>

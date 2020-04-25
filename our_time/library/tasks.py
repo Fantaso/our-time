@@ -1,11 +1,7 @@
 from pprint import pprint
 
-from django.contrib import messages
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-
-from .forms import BookForm
-from .models import Author, Publisher
+from .forms import OpenLibraryBookForm
+from .models import Author, Publisher, Genre
 
 
 def book_exists(isbn):
@@ -34,10 +30,11 @@ def delayed_find_book_and_save(user, isbn: str = None):
 
     authors = book_data.pop('authors')
     publishers = book_data.pop('publishers')
+    genres = book_data.pop('genres')
 
     pprint(json_data)
 
-    book_form = BookForm(data=book_data)
+    book_form = OpenLibraryBookForm(data=book_data)
 
     # add image to the form to be saved.
     image_data = img_manager.get_django_upload_image_data(book_data.get('cover'))
@@ -59,12 +56,17 @@ def delayed_find_book_and_save(user, isbn: str = None):
                 author_db.save()
                 book.authors.add(author_db)
                 book.save()
-
         if publishers:
             for publisher in publishers:
                 publisher_db, _ = Publisher.objects.get_or_create(name=publisher)
                 publisher_db.save()
                 book.publishers.add(publisher_db)
+                book.save()
+        if genres:
+            for genre in genres:
+                genre_db, _ = Genre.objects.get_or_create(name=genre)
+                genre_db.save()
+                book.genres.add(genre_db)
                 book.save()
         return f"Book added {book} ISBN:{book.isbn_10} - And books' title is '{book.title}'"
     else:

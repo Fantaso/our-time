@@ -18,7 +18,6 @@ class ISBNForm(forms.Form):
 #     cover= forms.ImageField(required=False)
 #     number_of_pages= forms.IntegerField()
 #     authors= forms.SelectMultiple()
-
 class BookForm(forms.ModelForm):
     # authors = forms.ModelChoiceField(queryset=Author.objects.all(), required=False)
     class Meta:
@@ -38,8 +37,30 @@ class BookForm(forms.ModelForm):
             'cover': forms.FileInput(attrs={'class': 'file-input'}),
             'number_of_pages': forms.TextInput(attrs={'class': 'input'}),
 
-            # 'authors': forms.SelectMultiple(attrs={'class': 'select is-multiple', 'size': '3'}),
-            # 'publishers': forms.SelectMultiple(attrs={'class': 'select is-multiple', 'size': '3'}),
-            # 'genres': forms.SelectMultiple(attrs={'class': 'select is-multiple', 'size': '3'}),
-            # 'languages': forms.SelectMultiple(attrs={'class': 'select is-multiple', 'size': '3'}),
+            'authors': forms.SelectMultiple(attrs={'class': 'select is-multiple', 'size': '3'}),
+            'publishers': forms.SelectMultiple(attrs={'class': 'select is-multiple', 'size': '3'}),
+            'genres': forms.SelectMultiple(attrs={'class': 'select is-multiple', 'size': '3'}),
+            'languages': forms.SelectMultiple(attrs={'class': 'select is-multiple', 'size': '3'}),
         }
+
+
+class OpenLibraryBookForm(forms.ModelForm):
+    # authors = forms.ModelChoiceField(queryset=Author.objects.all(), required=False)
+    class Meta:
+        model = Book
+        fields = (
+            'owner',
+            'isbn_10',
+            'title',
+            'subtitle',
+            'description',
+            'publish_date',
+            'number_of_pages',
+
+            'cover',
+
+            # 'authors',
+            # 'publishers',
+            # 'genres',
+            # 'languages',
+        )

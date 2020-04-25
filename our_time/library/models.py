@@ -40,6 +40,11 @@ class Publisher(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+    class Meta:
+        ordering = ('-name',)
+        verbose_name = 'publisher'
+        verbose_name_plural = 'publishers'
+
 
 class Genre(models.Model):
     name = models.CharField(max_length=15, blank=True)
@@ -47,12 +52,22 @@ class Genre(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+    class Meta:
+        ordering = ('-name',)
+        verbose_name = 'genre'
+        verbose_name_plural = 'genres'
+
 
 class Language(models.Model):
     name = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return f'{self.name}'
+
+    class Meta:
+        ordering = ('-name',)
+        verbose_name = 'language'
+        verbose_name_plural = 'languages'
 
 
 class Book(models.Model):
