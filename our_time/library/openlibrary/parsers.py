@@ -72,20 +72,23 @@ class OpenLibraryParser:
         )
 
     def parse_title(self):
-        return self.book_data.get('title', '')
+        title = self.book_data.get('title', '')
+        return self.clean_str(title)
 
     def parse_subtitle(self):
-        return self.book_data.get('subtitle', '')
+        subtitle = self.book_data.get('subtitle', '')
+        return self.clean_str(subtitle)
 
     def parse_description(self):
-        return self.book_data.get('notes', '')
+        description = self.book_data.get('notes', '')
+        return self.clean_str(description)
 
     def parse_publish_date(self):
         from dateutil import parser
         publish_date = self.book_data.get('publish_date', '').strip()
 
         # grab the first year "1961-71"
-        if len(publish_date) == 6 and '-' in publish_date:
+        if len(publish_date) == 7 and '-' in publish_date:
             publish_date = publish_date.split('-')[0]
 
         return parser.parse(publish_date).date()
@@ -95,23 +98,26 @@ class OpenLibraryParser:
 
     def parse_table_of_contents(self):
         toc = self.book_data.get('table_of_contents', '')
-        contents = [subject['title'] for subject in toc]
+        contents = [self.clean_str(subject['title']) for subject in toc]
         return contents
 
     def parse_authors(self):
         authors = self.book_data.get('authors', [])
-        return [author['name'] for author in authors]
+        return [self.clean_str(author['name']) for author in authors]
 
     def parse_publishers(self):
         publishers = self.book_data.get('publishers', [])
-        return [publisher['name'] for publisher in publishers]
+        return [self.clean_str(publisher['name']) for publisher in publishers]
 
     def parse_genres(self):
         genres = self.book_data.get('subjects', [])
-        return [genre['name'] for genre in genres]
+        return [self.clean_str(genre['name']) for genre in genres]
 
     def parse_languages(self):
         return []
+
+    def clean_str(self, _str: str):
+        return _str.strip().lower()
 
     def parse_cover(self):
         sizes = ['large', 'medium', 'small']
