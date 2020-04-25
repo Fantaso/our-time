@@ -54,6 +54,7 @@ Book Detail
 
             <p> <strong>Publishers:</strong> {% for publisher in book.publishers.all %} {{ publisher.name|title }}, {% endfor %}</p>
             <p> <strong>Genres:</strong> {% for genre in book.genres.all %} {{ genre.name|title }}, {% endfor %}</p>
+            <p> <strong>Characters:</strong> {% for character in book.characters.all %} {{ character.name|title }}, {% endfor %}</p>
             {# <p> <strong>Languages:</strong> {% for language in book.languages.all %} {{ language.name|title }} {% endfor %}</p> #}
 
         </div>

@@ -8,7 +8,7 @@
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
         {% for field in form %}
         {# TODO: fix how to modify this better #}
-            {% if field == form.authors or field == form.publishers or field == form.genres or field == form.languages %}
+            {% if field == form.authors or field == form.publishers or field == form.genres or field == form.languages or field == form.characters %}
                 <div class="fieldWrapper select is-multiple ">
                     {{ field.errors }}
                     {# field.label_tag #}

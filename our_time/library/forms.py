@@ -65,4 +65,5 @@ class OpenLibraryBookForm(forms.ModelForm):
             # 'publishers',
             # 'genres',
             # 'languages',
+            # 'characters',
         )

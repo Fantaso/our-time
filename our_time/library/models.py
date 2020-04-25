@@ -69,6 +69,17 @@ class Language(models.Model):
         verbose_name = 'language'
         verbose_name_plural = 'languages'
 
+class Character(models.Model):
+    name = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        ordering = ('-name',)
+        verbose_name = 'character'
+        verbose_name_plural = 'characters'
+
 
 class Book(models.Model):
     # book details
@@ -86,6 +97,7 @@ class Book(models.Model):
     publishers = models.ManyToManyField('Publisher', related_name='books', blank=True)
     genres = models.ManyToManyField('Genre', related_name='books', blank=True)
     languages = models.ManyToManyField('Language', related_name='books', blank=True)
+    characters = models.ManyToManyField('Character', related_name='books', blank=True)
 
     # media
     cover = models.ImageField(

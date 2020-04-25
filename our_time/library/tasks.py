@@ -1,7 +1,7 @@
 from pprint import pprint
 
 from .forms import OpenLibraryBookForm
-from .models import Author, Publisher, Genre
+from .models import Author, Publisher, Genre, Character
 
 
 def book_exists(isbn):
@@ -31,6 +31,7 @@ def delayed_find_book_and_save(user, isbn: str = None):
     authors = book_data.pop('authors')
     publishers = book_data.pop('publishers')
     genres = book_data.pop('genres')
+    characters = book_data.pop('characters')
 
     pprint(json_data)
 
@@ -67,6 +68,13 @@ def delayed_find_book_and_save(user, isbn: str = None):
                 genre_db, _ = Genre.objects.get_or_create(name=genre)
                 genre_db.save()
                 book.genres.add(genre_db)
+                book.save()
+
+        if characters:
+            for character in characters:
+                character_db, _ = Character.objects.get_or_create(name=character)
+                character_db.save()
+                book.characters.add(character_db)
                 book.save()
         return f"Book added {book} ISBN:{book.isbn_10} - And books' title is '{book.title}'"
     else:

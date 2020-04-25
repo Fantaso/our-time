@@ -104,6 +104,7 @@ class OpenLibraryParser:
             publish_date=self.parse_publish_date(),
             number_of_pages=self.parse_number_of_pages(),
             # table_of_contents=self.parse_table_of_contents(),
+            characters=self.parse_characters(),
             authors=self.parse_authors(),
             publishers=self.parse_publishers(),
             genres=self.parse_genres(),
@@ -140,6 +141,10 @@ class OpenLibraryParser:
         toc = self.book_data.get('table_of_contents', '')
         contents = [self.clean_str(subject['title']) for subject in toc]
         return contents
+
+    def parse_characters(self):
+        characters = self.book_data.get('subject_people', [])
+        return [self.clean_str(character['name']) for character in characters]
 
     def parse_authors(self):
         authors = self.book_data.get('authors', [])
