@@ -17,13 +17,44 @@ class OpenLibraryParser:
              'small': 'https://covers.openlibrary.org/b/id/8569281-S.jpg'}
     # download available files in ebooks
     ebooks = [
-        {'availability': 'full',  # 'restricted'
+        {'availability': 'full',  # 'restricted', 'borrow',
          'formats': {'epub': {'url': 'https://archive.org/download/CleanCode_201607/CleanCode_201607.epub'},
                      'pdf': {'url': 'https://archive.org/download/CleanCode_201607/CleanCode_201607.pdf'},
                      'text': {'url': 'https://archive.org/download/CleanCode_201607/CleanCode_201607_djvu.txt'}},
          'preview_url': 'https://archive.org/details/CleanCode_201607',
          'read_url': 'https://archive.org/stream/CleanCode_201607'}
     ]
+    links = [
+        {'title': 'Becoming by Michelle Obama | Crown '
+                  'Publishing',
+         'url': 'https://becomingmichelleobama.com/'},
+        {'title': 'Becoming (book) - Wikipedia',
+         'url': 'https://en.wikipedia.org/wiki/Becoming_(book)'},
+        {'title': 'Reading Michelle Obama’s “Becoming” '
+                  'as a Motherhood Memoir',
+         'url': 'https://www.newyorker.com/culture/cultural-comment/reading-michelle-obamas-becoming-as-a-motherhood-memoir'},
+        {'title': 'Becoming by Michelle Obama review – '
+                  'race, marriage and the ugly side of '
+                  'politics',
+         'url': 'https://www.theguardian.com/books/2018/nov/14/michelle-obama-becoming-review-undoubtedly-political-book'},
+        {'title': "Michelle Obama's memoir Becoming "
+                  'sells 10 million copies - BBC News',
+         'url': 'https://www.bbc.com/news/business-47704987'}
+    ]
+    classifications = {
+        'dewey_decimal_class': ['909.82'],
+        'lc_classifications': ['CB428 .H36848 '
+                               '2018']
+    }
+    identifiers = {
+        'goodreads': ['238540'],
+        'isbn_10': ['0340750154'],
+        'isbn_13': ['9780340750155'],
+        'lccn': ['2018013856'],
+        'oclc': ['1029771757'],
+        'librarything': ['38872'],
+        'openlibrary': ['OL9784448M']
+    }
 
     notes = 'A Signet Book\r\nUS 4.95/CAN 5.95'
     publish_places = [{'name': 'New York, N.Y., USA'}]
