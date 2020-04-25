@@ -15,6 +15,15 @@ class OpenLibraryParser:
     cover = {'large': 'https://covers.openlibrary.org/b/id/8569281-L.jpg',
              'medium': 'https://covers.openlibrary.org/b/id/8569281-M.jpg',
              'small': 'https://covers.openlibrary.org/b/id/8569281-S.jpg'}
+    # download available files in ebooks
+    ebooks = [
+        {'availability': 'full',
+         'formats': {'epub': {'url': 'https://archive.org/download/CleanCode_201607/CleanCode_201607.epub'},
+                     'pdf': {'url': 'https://archive.org/download/CleanCode_201607/CleanCode_201607.pdf'},
+                     'text': {'url': 'https://archive.org/download/CleanCode_201607/CleanCode_201607_djvu.txt'}},
+         'preview_url': 'https://archive.org/details/CleanCode_201607',
+         'read_url': 'https://archive.org/stream/CleanCode_201607'}
+    ]
 
     notes = 'A Signet Book\r\nUS 4.95/CAN 5.95'
     publish_places = [{'name': 'New York, N.Y., USA'}]
