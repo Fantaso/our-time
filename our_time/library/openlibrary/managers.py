@@ -18,7 +18,7 @@ class OpenLibraryManager:
 
     books_url = 'http://openlibrary.org/api/books'
     params = ({
-        'jscmd': 'data',  # data: gets data about book, viewapi: gets html pages
+        'jscmd': 'data',  # data: gets data about book, viewapi: gets html pages, details: internal info abput the book
         'format': 'json',  # api by default returns js unless specified
     })
     _book = None

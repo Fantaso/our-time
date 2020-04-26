@@ -1,4 +1,5 @@
 class OpenLibraryParser:
+    ###  jscmd = data
     url = 'http://openlibrary.org/books/OL24229110M/IT'
 
     title = 'IT'
@@ -84,6 +85,14 @@ class OpenLibraryParser:
         {'name': 'homosexuality',
          'url': 'https://openlibrary.org/subjects/homosexuality'}
     ]
+    weight = '1 grams'
+
+    ###  jscmd = details
+    description = '\"A study of voluntary slow reading from diverse angles\"--Provided by publisher.'
+    physical_format = "Paperback"
+    physical_dimensions = "1 x 1 x 1 inches"
+    type = {"key": "/type/edition"}
+    languages = [{"key": "/languages/eng"}]
 
     def __init__(self, json_data):
         self.isbn, self.book_data = (
