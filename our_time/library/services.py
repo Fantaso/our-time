@@ -125,13 +125,13 @@
 #     book = None
 #     isbn = None
 #
-#     def find_book_by_isbn10(self, isbn: str):
+#     def find_book_by_isbn(self, isbn: str):
 #         # TODO: ConnectionError - Exception when no internet or failed connection.
 #         self.isbn = isbn
 #         self.params.update(bibkeys=f'ISBN:{isbn}')  # format openlibrary receives the isbn number to be searched
 #         return requests.get(self.books_url, params=self.params).json()
 #
-#     def parse_book_by_isbn10(self, json_data):
+#     def parse_book(self, json_data):
 #         parser = OpenLibraryParser(json_data)
 #         self.book = parser.to_dict()
 #         return self.book

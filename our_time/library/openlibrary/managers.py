@@ -24,13 +24,20 @@ class OpenLibraryManager:
     _book = None
     _isbn = None
 
-    def find_book_by_isbn10(self, isbn: str):
+    # TODO: add these methods too and refactor ISBN, OLID not to do DRY with LCCNs, OCLC
+    def find_book_by_isbn(self, isbn: str):
         # TODO: ConnectionError - Exception when no internet or failed connection.
         self._isbn = isbn
         self.params.update(bibkeys=f'ISBN:{isbn}')  # format openlibrary receives the isbn number to be searched
         return requests.get(self.books_url, params=self.params).json()
 
-    def parse_book_by_isbn10(self, json_data):
+    def find_book_by_olid(self, olid: str):
+        # TODO: ConnectionError - Exception when no internet or failed connection.
+        self._olid = olid
+        self.params.update(bibkeys=f'OLID:{olid}')  # format openlibrary receives the isbn number to be searched
+        return requests.get(self.books_url, params=self.params).json()
+
+    def parse_book(self, json_data):
         if json_data:
             parser = OpenLibraryParser(json_data)
             self._book = parser.to_dict()
