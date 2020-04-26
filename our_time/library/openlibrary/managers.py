@@ -22,7 +22,7 @@ class OpenLibraryManager:
         'format': 'json',  # api by default returns js unless specified
     })
     _book = None
-    _isbn = None
+    _identifier = None
 
     _identifiers = ['isbn', 'olid', 'lccn', 'oclc']
 
