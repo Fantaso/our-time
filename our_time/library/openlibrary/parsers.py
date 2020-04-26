@@ -140,8 +140,9 @@ class OpenLibraryParser:
         # grab the first year "1961-71"
         if len(publish_date) == 7 and '-' in publish_date:
             publish_date = publish_date.split('-')[0]
-
-        return parser.parse(publish_date).date()
+        if publish_date:
+            return parser.parse(publish_date).date()
+        return ''
 
     def parse_number_of_pages(self):
         return self.book_data.get('number_of_pages', '')
