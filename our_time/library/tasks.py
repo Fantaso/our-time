@@ -4,13 +4,13 @@ from .forms import OpenLibraryBookForm
 from .models import Author, Publisher, Genre, Character
 
 
-def book_exists(isbn):
-    from .openlibrary.managers import OpenLibraryManager
-    manager = OpenLibraryManager()
-    json_data = manager.find_book_by_isbn(isbn)
-    if json_data:
-        return True
-    return False
+# def book_exists(isbn):
+#     from .openlibrary.managers import OpenLibraryManager
+#     manager = OpenLibraryManager()
+#     json_data = manager.find_book('isbn', isbn)
+#     if json_data:
+#         return True
+#     return False
 
 
 def delayed_find_book_and_save(user, isbn: str = None):
@@ -21,7 +21,7 @@ def delayed_find_book_and_save(user, isbn: str = None):
 
     manager = OpenLibraryManager()
     img_manager = ImageManager()
-    json_data = manager.find_book_by_isbn(isbn)
+    json_data = manager.find_book('isbn', isbn)
     if not json_data:
         return f"ISBN:{isbn} - ISBN not found in openlibrary.org"
 
@@ -32,11 +32,14 @@ def delayed_find_book_and_save(user, isbn: str = None):
     publishers = book_data.pop('publishers')
     genres = book_data.pop('genres')
     characters = book_data.pop('characters')
-    # pprint(manager.find_book_by_olid('OL13101191W')) # alicein wonder not found
-    # pprint(manager.find_book_by_olid('OL24173027M'))  # another version alice in wonderland
-    # pprint(manager.find_book_by_olid('OL24286565M')) # olid from isbn search
-    # pprint(manager.find_book_by_olid('OL9173430M')) # from olid website page
+
+    # {testing}
+    # pprint(manager.find_book('olid', 'OL13101191W')) # alicein wonder not found
+    # pprint(manager.find_book('olid', 'OL24173027M'))  # another version alice in wonderland
+    pprint(manager.find_book('olid', 'OL24286565M'))  # olid from isbn search
+    pprint(manager.find_book('olid', 'OL9173430M'))  # from olid website page
     pprint(json_data)
+    # {end testing}
 
     book_form = OpenLibraryBookForm(data=book_data)
 

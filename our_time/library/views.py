@@ -93,7 +93,7 @@ class FetchBookData(FormView):
         from .openlibrary.managers import OpenLibraryManager
         isbn = form.cleaned_data.get('isbn')
         manager = OpenLibraryManager()
-        json_data = manager.find_book_by_isbn(isbn)
+        json_data = manager.find_book('isbn', isbn)
         if not json_data:
             messages.info(self.request, f"ISBN:{isbn} - ISBN code doesn't exist in openlibrary.org")
             return super().form_invalid(form)
