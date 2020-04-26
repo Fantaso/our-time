@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Book, Author, Publisher, Genre, Language
+from .models import Book
 
 
 # this form could be decouple and reused for also the model of the book in BookForm

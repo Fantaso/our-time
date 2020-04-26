@@ -69,6 +69,7 @@ class Language(models.Model):
         verbose_name = 'language'
         verbose_name_plural = 'languages'
 
+
 class Character(models.Model):
     name = models.CharField(max_length=100, blank=True)
 
