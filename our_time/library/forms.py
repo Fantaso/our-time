@@ -6,7 +6,7 @@ from .models import Book
 # this form could be decouple and reused for also the model of the book in BookForm
 class ISBNForm(forms.Form):
     isbn = forms.CharField(max_length=20, widget=forms.TextInput(
-        attrs={'class': 'input', 'placeholder': 'Write the ISBN-10 code here...'}
+        attrs={'class': 'input', 'placeholder': 'Write the ISBN 10 or 13 code here...'}
     ))
 
 
