@@ -26,13 +26,14 @@ class OpenLibraryManager:
 
     _identifiers = ['isbn', 'olid', 'lccn', 'oclc']
 
-    # TODO: add these methods too and refactor ISBN, OLID not to do DRY with LCCNs, OCLC
-    def find_book(self, identifier: str, book_code: str):
-        # TODO: ConnectionError - Exception when no internet or failed connection.
+    def find_book(self, identifier: str, book_code: str, jscmd=None):
+        if jscmd:
+            self.params.update(jscmd=jscmd)
         if identifier in self._identifiers:
             self._identifier = identifier
-            self.params.update(
-                bibkeys=f'{identifier.upper()}:{book_code}')  # format openlibrary receives the isbn number to be searched
+            # bibkeys: format openlibrary receives the isbn number to be searched
+            self.params.update(bibkeys=f'{identifier.upper()}:{book_code}')
+            # TODO: ConnectionError - Exception when no internet or failed connection.
             return requests.get(self.books_url, params=self.params).json()
         return None
 
@@ -42,6 +43,13 @@ class OpenLibraryManager:
             self._book = parser.to_dict()
             return self._book
         return None
+
+    @staticmethod
+    def book_exists(identifier: str, book_code: str):
+        manager = OpenLibraryManager()
+        if manager.find_book(identifier, book_code):
+            return True
+        return False
 
 
 class ImageManager:

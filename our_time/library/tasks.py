@@ -4,13 +4,21 @@ from .forms import OpenLibraryBookForm
 from .models import Author, Publisher, Genre, Character
 
 
-# def book_exists(isbn):
-#     from .openlibrary.manager import OpenLibraryManager
-#     manager = OpenLibraryManager()
-#     json_data = manager.find_book('isbn', isbn)
-#     if json_data:
-#         return True
-#     return False
+def get_or_create_m2m(str_list, model):
+    """
+    Receives a list of names
+    Finds each in the database if not it creates it
+    Return a list of db instances.
+    """
+    if str_list:
+        instance_list = []
+        # instances = [model.objects.get_or_create(name=_str) for _str in str_list]
+        for _str in str_list:
+            instance, _ = model.objects.get_or_create(name=_str)
+            instance.save()
+            instance_list.append(instance)
+        return instance_list
+    return []
 
 
 def delayed_find_book_and_save(user, isbn: str = None):
@@ -24,11 +32,14 @@ def delayed_find_book_and_save(user, isbn: str = None):
     json_data = manager.find_book('isbn', isbn)
 
     # {testing}
+    print('[##  DATA  ##]')
+    pprint(json_data)
     # pprint(manager.find_book('olid', 'OL13101191W')) # alicein wonder not found
     # pprint(manager.find_book('olid', 'OL24173027M'))  # another version alice in wonderland
-    pprint(manager.find_book('olid', 'OL24286565M'))  # olid from isbn search
-    pprint(manager.find_book('olid', 'OL9173430M'))  # from olid website page
-    pprint(json_data)
+    # pprint(manager.find_book('olid', 'OL24286565M'))  # olid from isbn search
+    # pprint(manager.find_book('olid', 'OL9173430M'))  # from olid website page
+    print('[##  DETAILS  ##]')
+    pprint(manager.find_book('isbn', isbn, jscmd='details'))  # from olid website page
     # {end testing}
 
     if not json_data:
@@ -37,6 +48,7 @@ def delayed_find_book_and_save(user, isbn: str = None):
     # get formatted book data and create the form with ir
     book_data = manager.parse_book(json_data)
 
+    # get all relationships before saving it in form
     authors = book_data.pop('authors')
     publishers = book_data.pop('publishers')
     genres = book_data.pop('genres')
@@ -51,38 +63,17 @@ def delayed_find_book_and_save(user, isbn: str = None):
 
     # book form validation
     if book_form.is_valid():
+        book_form.instance.owner = user
         book = book_form.save()
-        book.owner = user
 
-        # check relationships
-        if authors:
-            # replcaing list of names for db objtects
-            # TODO: if get or create save the obj already, the author creation can be reduced to a comprenhension
-            # authors_obj = [Author.objects.get_or_create(name=author) for author in authors]
-            for author in authors:
-                author_db, _ = Author.objects.get_or_create(name=author)
-                author_db.save()
-                book.authors.add(author_db)
-                book.save()
-        if publishers:
-            for publisher in publishers:
-                publisher_db, _ = Publisher.objects.get_or_create(name=publisher)
-                publisher_db.save()
-                book.publishers.add(publisher_db)
-                book.save()
-        if genres:
-            for genre in genres:
-                genre_db, _ = Genre.objects.get_or_create(name=genre)
-                genre_db.save()
-                book.genres.add(genre_db)
-                book.save()
+        # process all relationships and add them to the book instance
+        book.authors.add(*get_or_create_m2m(authors, Author))
+        book.publishers.add(*get_or_create_m2m(publishers, Publisher))
+        book.genres.add(*get_or_create_m2m(genres, Genre))
+        book.characters.add(*get_or_create_m2m(characters, Character))
 
-        if characters:
-            for character in characters:
-                character_db, _ = Character.objects.get_or_create(name=character)
-                character_db.save()
-                book.characters.add(character_db)
-                book.save()
+        # save the book with all relationships
+        book.save()
         return f"Book added {book} ISBN:{book.isbn_10} - And books' title is '{book.title}'"
     else:
         print(book_form.errors)

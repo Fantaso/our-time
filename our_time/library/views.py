@@ -14,6 +14,7 @@ from .forms import BookForm
 # or on get_sucess_url() with reverse() as functions are not evaluated on import
 from .forms import ISBNForm
 from .models import Author, Book
+from .openlibrary_api.manager import OpenLibraryManager
 from .tasks import delayed_find_book_and_save
 
 
@@ -45,6 +46,7 @@ class BookCreate(BookBase, CreateView):
     success_message = '%(title)s was created successfully'
 
     def form_valid(self, form):
+        form.instance.owner = self.request.user
         success_message = self.get_success_message(form.cleaned_data)
         if success_message:
             messages.success(self.request, success_message)
@@ -87,11 +89,9 @@ class FetchBookData(FormView):
         checks if the books exists to alert user right away
         and execute the task of finding and saving the book in database.
         """
-        from .openlibrary_api.manager import OpenLibraryManager
         isbn = form.cleaned_data.get('isbn')
-        manager = OpenLibraryManager()
-        json_data = manager.find_book('isbn', isbn)
-        if not json_data:
+
+        if not OpenLibraryManager.book_exists('isbn', isbn):
             messages.info(self.request, f"ISBN:{isbn} - ISBN code doesn't exist in openlibrary.org")
             return super().form_invalid(form)
 
