@@ -1,14 +1,11 @@
 class OpenLibraryParser:
     ###  jscmd = data
     url = 'http://openlibrary.org/books/OL24229110M/IT'
-
     title = 'IT'
     by_statement = 'Stephen King.'
     publish_date = '1987-09'
-
     number_of_pages = 1093
     pagination = 'x, 1093 p. ;'
-
     publishers = [{'name': 'New American Library'}]
     authors = [{'name': 'Stephen King',
                 'url': 'http://openlibrary.org/authors/OL2162284A/Stephen_King'}]
@@ -16,7 +13,6 @@ class OpenLibraryParser:
     cover = {'large': 'https://covers.openlibrary.org/b/id/8569281-L.jpg',
              'medium': 'https://covers.openlibrary.org/b/id/8569281-M.jpg',
              'small': 'https://covers.openlibrary.org/b/id/8569281-S.jpg'}
-    # download available files in ebooks
     ebooks = [
         {'availability': 'full',  # 'restricted', 'borrow',
          'formats': {'epub': {'url': 'https://archive.org/download/CleanCode_201607/CleanCode_201607.epub'},
@@ -24,7 +20,7 @@ class OpenLibraryParser:
                      'text': {'url': 'https://archive.org/download/CleanCode_201607/CleanCode_201607_djvu.txt'}},
          'preview_url': 'https://archive.org/details/CleanCode_201607',
          'read_url': 'https://archive.org/stream/CleanCode_201607'}
-    ]
+    ]  # download available files in ebooks
     links = [
         {'title': 'Becoming by Michelle Obama | Crown '
                   'Publishing',
@@ -60,15 +56,15 @@ class OpenLibraryParser:
     notes = 'A Signet Book\r\nUS 4.95/CAN 5.95'
     publish_places = [{'name': 'New York, N.Y., USA'}]
     subject_people = [{'name': 'IT',
-                       'url': 'https://openlibrary.org/subjects/person:it'}]
+                       'url': 'https://openlibrary.org/subjects/person:it'}]  # List of characters in play in the books
     subject_places = [{'name': 'Derry',
-                       'url': 'https://openlibrary.org/subjects/place:derry'}]
+                       'url': 'https://openlibrary.org/subjects/place:derry'}]  # List of places in play in the books
     subject_times = [
         {'name': '1957',
          'url': 'https://openlibrary.org/subjects/time:1957'},
         {'name': '1958',
          'url': 'https://openlibrary.org/subjects/time:1958'}
-    ]
+    ]  # List of time or years in play in the books
     subjects = [
         {'name': 'coming of age',
          'url': 'https://openlibrary.org/subjects/coming_of_age'},
@@ -84,15 +80,15 @@ class OpenLibraryParser:
          'url': 'https://openlibrary.org/subjects/catatonia'},
         {'name': 'homosexuality',
          'url': 'https://openlibrary.org/subjects/homosexuality'}
-    ]
+    ]  # List of genre-words like
     weight = '1 grams'
 
     ###  jscmd = details
     description = '\"A study of voluntary slow reading from diverse angles\"--Provided by publisher.'
-    physical_format = "Paperback"
+    physical_format = "Paperback"  # type of book (kindle, hardcover, paperback...)
     physical_dimensions = "1 x 1 x 1 inches"
     type = {"key": "/type/edition"}
-    languages = [{"key": "/languages/eng"}]
+    languages = [{"key": "/languages/eng"}]  # List of languages that the book is written on.
 
     def __init__(self, json_data):
         self.isbn, self.book_data = (
@@ -181,5 +177,4 @@ class OpenLibraryParser:
         for size in sizes:
             if size in images:
                 return images[size]
-        else:
-            return ''
+        return ''
