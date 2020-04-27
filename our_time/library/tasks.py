@@ -5,7 +5,7 @@ from .models import Author, Publisher, Genre, Character
 
 
 # def book_exists(isbn):
-#     from .openlibrary.managers import OpenLibraryManager
+#     from .openlibrary.manager import OpenLibraryManager
 #     manager = OpenLibraryManager()
 #     json_data = manager.find_book('isbn', isbn)
 #     if json_data:
@@ -14,7 +14,7 @@ from .models import Author, Publisher, Genre, Character
 
 
 def delayed_find_book_and_save(user, isbn: str = None):
-    from .openlibrary.managers import OpenLibraryManager, ImageManager
+    from .openlibrary_api.manager import OpenLibraryManager, ImageManager
 
     if not isbn:
         return 'ISBN not provided.'

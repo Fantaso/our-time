@@ -6,7 +6,7 @@ import requests
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from .parsers import OpenLibraryParser
+from .parser import OpenLibraryParser
 
 
 class OpenLibraryManager:

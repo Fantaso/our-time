@@ -87,7 +87,7 @@ class FetchBookData(FormView):
         checks if the books exists to alert user right away
         and execute the task of finding and saving the book in database.
         """
-        from .openlibrary.managers import OpenLibraryManager
+        from .openlibrary_api.manager import OpenLibraryManager
         isbn = form.cleaned_data.get('isbn')
         manager = OpenLibraryManager()
         json_data = manager.find_book('isbn', isbn)
