@@ -25,7 +25,7 @@ Book Detail
 
                     <!-- Authors -->
                     <strong>Written by </strong>
-                    {% for author in book.authors.all %} {{ author.name|title }}, {% endfor %}
+                    {{ book.authors.all|join:", "|title }}
 
                     <!-- Year of publication -->
                     <br>
@@ -38,12 +38,7 @@ Book Detail
         </div>
 
         <div class="content">
-            {{ book.description }}
-            <!--            <a>@bulmaio</a>.-->
-            <!--            <a href="#">#css</a>-->
-            <br>
-
-
+            {{ book.description|capfirst }}
             <br>
             <br>
             <p><strong>ISBN 10</strong>: {{ book.isbn_10 }}</p>
@@ -52,10 +47,10 @@ Book Detail
             {# <p><strong>Buy date</strong>: {{ book.buy_date }}</p>} #}
             {# <p><strong>Holder</strong>: {{ book.holder }}</p>} #}
 
-            <p> <strong>Publishers:</strong> {% for publisher in book.publishers.all %} {{ publisher.name|title }}, {% endfor %}</p>
-            <p> <strong>Genres:</strong> {% for genre in book.genres.all %} {{ genre.name|title }}, {% endfor %}</p>
-            <p> <strong>Characters:</strong> {% for character in book.characters.all %} {{ character.name|title }}, {% endfor %}</p>
-            {# <p> <strong>Languages:</strong> {% for language in book.languages.all %} {{ language.name|title }} {% endfor %}</p> #}
+            <p> <strong>Publishers:</strong> {{ book.publishers.all|join:", "|title }}</p>
+            <p> <strong>Genres:</strong> {{ book.genres.all|join:", "|title }} </p>
+            <p> <strong>Characters:</strong> {{ book.characters.all|join:", "|title }}</p>
+            {# <p> <strong>Languages:</strong> {{ book.languages.all|join:", "|title }}</p> #}
 
         </div>
 

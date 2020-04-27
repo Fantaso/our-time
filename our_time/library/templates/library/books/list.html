@@ -19,7 +19,7 @@ Book Shelf
     {% for book in book_list %}
         <div class="column is-2-fullhd is-3-widescreen is-4-desktop is-6-tablet is-12-mobile">
             <a href="{% url 'library:book-detail' pk=book.pk %}">
-                {% card book.title|title book.year book.authors.first.full_name|title book.cover %}
+                {% card book.title|title book.year book.authors.all|join:", "|title book.cover %}
             </a>
         </div>
     {% empty %}
